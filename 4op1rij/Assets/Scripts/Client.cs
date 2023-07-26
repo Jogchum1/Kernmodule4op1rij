@@ -64,9 +64,9 @@ using UnityEngine.SceneManagement;
         void Update() {
             m_Driver.ScheduleUpdate().Complete();
 
-            if (!connected && Time.time - startTime > 5f) {
-                SceneManager.LoadScene(0);
-            }
+            //if (!connected && Time.time - startTime > 5f) {
+            //    SceneManager.LoadScene(0);
+            //}
 
             if (!m_Connection.IsCreated) {
                 if (!Done)
