@@ -4,9 +4,9 @@ using UnityEngine;
 using Unity.Networking.Transport;
 using Unity.Collections;
 using Unity.Networking.Transport.Utilities;
+using System;
 
-
-    public delegate void ServerMessageHandler(Server server, NetworkConnection con, MessageHeader header);
+public delegate void ServerMessageHandler(Server server, NetworkConnection con, MessageHeader header);
     public delegate void ClientMessageHandler(Client client, MessageHeader header);
 
     public enum NetworkMessageType
@@ -50,7 +50,8 @@ using Unity.Networking.Transport.Utilities;
             { NetworkMessageType.NETWORK_UPDATE_POSITION,   typeof(UpdatePositionMessage) },
             { NetworkMessageType.INPUT_UPDATE,              typeof(InputUpdateMessage) },
             { NetworkMessageType.PING,                      typeof(PingMessage) },
-            { NetworkMessageType.PONG,                      typeof(PongMessage) }
+            { NetworkMessageType.PONG,                      typeof(PongMessage) },
+            {NetworkMessageType.RPC_MESSAGE,                typeof(RPCMessage) }          
         };
     }
 
@@ -61,10 +62,12 @@ using Unity.Networking.Transport.Utilities;
             { NetworkMessageType.CHAT_MESSAGE,  HandleClientMessage },
             { NetworkMessageType.CHAT_QUIT,     HandleClientExit },
             { NetworkMessageType.INPUT_UPDATE,  HandleClientInput },
-            { NetworkMessageType.PONG,          HandleClientPong }
+            { NetworkMessageType.PONG,          HandleClientPong },
+            {NetworkMessageType.RPC_MESSAGE,    HandleClientRPC }
         };
 
-        public NetworkDriver m_Driver;
+
+    public NetworkDriver m_Driver;
         public NetworkPipeline m_Pipeline;
         private NativeList<NetworkConnection> m_Connections;
 
@@ -72,12 +75,19 @@ using Unity.Networking.Transport.Utilities;
         private Dictionary<NetworkConnection, NetworkedPlayer> playerInstances = new Dictionary<NetworkConnection, NetworkedPlayer>();
         private Dictionary<NetworkConnection, PingPong> pongDict = new Dictionary<NetworkConnection, PingPong>();
 
+        public GameManager gameManager;
+
         public ChatCanvas chat;
         public NetworkManager networkManager;
 
         void Start() {
-            // Create Driver
-            m_Driver = NetworkDriver.Create(new ReliableUtility.Parameters { WindowSize = 32 });
+            if (!ClientServerSelection.isServer)
+            {
+                this.enabled = false;
+            }
+
+        // Create Driver
+        m_Driver = NetworkDriver.Create(new ReliableUtility.Parameters { WindowSize = 32 });
             m_Pipeline = m_Driver.CreatePipeline(typeof(ReliableSequencedPipelineStage));
 
             // Open listener on server port
@@ -266,8 +276,14 @@ using Unity.Networking.Transport.Utilities;
             if (serv.networkManager.SpawnWithId(NetworkSpawnObject.PLAYER, NetworkManager.NextNetworkID, out player)) {
                 // Get and setup player instance
                 NetworkedPlayer playerInstance = player.GetComponent<NetworkedPlayer>();
+                Debug.Log("HandleClientHandshake");
                 playerInstance.isServer = true;
                 playerInstance.isLocal = false;
+
+                GameManager manager = FindObjectOfType<GameManager>();
+                manager.isServer = true;
+                manager.isLocal = false;
+                manager.AwakeObject();
                 networkId = playerInstance.networkId;
 
                 serv.playerInstances.Add(connection, playerInstance);
@@ -385,4 +401,25 @@ using Unity.Networking.Transport.Utilities;
             // Debug.Log("PONG");
             serv.pongDict[connection].status = 3;   //reset retry count
         }
+        private static void HandleClientRPC(Server serv, NetworkConnection connection, MessageHeader header)
+        {
+            RPCMessage rpcMsg = header as RPCMessage;
+        if (serv.playerInstances.ContainsKey(connection))
+        {
+            if (serv.playerInstances[connection].networkId == rpcMsg.target)
+            {
+                serv.playerInstances[connection].Fire(rpcMsg.position, rpcMsg.rotation);
+            }
+            else
+            {
+                Debug.LogError("NetworkID Mismatch for Player Input");
+            }
+        }
+        else
+        {
+            Debug.LogError("Received player input from unlisted connection");
+        }
     }
+
+}
+    

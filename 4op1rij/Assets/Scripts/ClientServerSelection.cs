@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
     public class ClientServerSelection : MonoBehaviour
     {
+        public static bool isServer = false;
         public string gameScene;
         public InputField serverIPInput, nameInput;
 
@@ -16,6 +17,8 @@ using UnityEngine.UI;
 		}
 
 		public void GoServer() {
+            isServer = true;
+
             SceneManager.LoadScene(gameScene);
         }
 
@@ -36,7 +39,9 @@ using UnityEngine.UI;
                 }
             }
             Client.clientName = name;
+            isServer = false;
 
             SceneManager.LoadScene(gameScene);
+        
         }
     }

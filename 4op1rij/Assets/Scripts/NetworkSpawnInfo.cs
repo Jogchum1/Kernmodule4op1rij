@@ -5,7 +5,7 @@ using UnityEngine;
 public enum NetworkSpawnObject
 {
 	PLAYER = 0,
-	BULLET = 1
+	COIN = 1
 }
 
 [CreateAssetMenu(menuName = "My Assets/NetworkSpawnInfo")]
