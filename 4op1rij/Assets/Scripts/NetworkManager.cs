@@ -29,7 +29,7 @@ public class NetworkManager : MonoBehaviour
 		}
         else {
             // assuming this doesn't crash...
-            obj = GameObject.Instantiate(spawnInfo.prefabList[2]);
+            obj = GameObject.Instantiate(spawnInfo.prefabList[(int)type]);
             
             NetworkedBehaviour beh = obj.GetComponent<NetworkedBehaviour>();
             if ( beh == null ) {
