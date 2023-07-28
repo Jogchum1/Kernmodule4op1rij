@@ -62,44 +62,7 @@ public class NetworkedPlayer : NetworkedBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                //Vector3 pos = camera.ScreenToWorldPoint(Input.mousePosition);
-                //Vector3 dir = Vector3.forward;
-
-                //GameObject obj;
-                //uint id = NetworkManager.NextNetworkID;
-                //Debug.Log(id + " is id");
-                //if (client.networkManager.SpawnWithId(NetworkSpawnObject.COIN, id, out obj))
-                //{
-                //    obj.GetComponent<NetworkedBullet>().isServer = false;
-
-                //    SpawnMessage msg = new SpawnMessage
-                //    {
-                //        objectType = NetworkSpawnObject.COIN,
-                //        networkId = id,
-                //        position = pos,
-                //        rotation = dir
-                //    };
-                //    client.SendPackedMessage(msg);
-                //}
-
-
                 client.CallOnServerObject("Fire", this, transform.position, transform.forward);
-
-                // Code for this client function (note the use of the params keyword)
-                /* 
-                public void CallOnServerObject( string function, NetworkedBehaviour target, params object[] data ) {
-                    RPCMessage rpc = new RPCMessage {
-                        target = target,
-                        methodName = function,
-                        data = data
-                    };
-
-                    SendPackedMessage(rpc);
-                }
-                */
-
-                //client.CallOnServerObject("Fire", this, transform.position, transform.forward);
-
             }
         }
 
@@ -125,9 +88,6 @@ public class NetworkedPlayer : NetworkedBehaviour
                 yVel = 10;
                 canJump = false;
             }
-
-            // TODO: Handle input.fire
-            //		- TODO: Include object position & rotation when spawning
 
             transform.Translate(input.horizontal * Time.deltaTime * 5, yVel * Time.deltaTime, input.vertical * Time.deltaTime * 5);
 
