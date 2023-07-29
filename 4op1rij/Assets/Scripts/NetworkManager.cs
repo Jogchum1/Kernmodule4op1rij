@@ -22,9 +22,7 @@ public class NetworkManager : MonoBehaviour
 
     public bool SpawnWithId( NetworkSpawnObject type, uint id, out GameObject obj ) {
         obj = null;
-        Debug.Log("test1");
         if ( networkedReferences.ContainsKey(id)) {
-            Debug.Log("test2");
             return false;
 		}
         else {
@@ -38,7 +36,6 @@ public class NetworkManager : MonoBehaviour
             beh.networkId = id;
 
             networkedReferences.Add(id, obj);
-            Debug.Log("test3");
 
             return true;
 		}
