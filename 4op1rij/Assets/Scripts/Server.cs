@@ -22,7 +22,7 @@ public enum NetworkMessageType
     PING,
     PONG,
     RPC_MESSAGE,
-    SPAWN_BOARD
+    SPAWN_COIN,
 }
 
 public enum MessageType
@@ -52,7 +52,8 @@ public static class NetworkMessageInfo
             { NetworkMessageType.INPUT_UPDATE,              typeof(InputUpdateMessage) },
             { NetworkMessageType.PING,                      typeof(PingMessage) },
             { NetworkMessageType.PONG,                      typeof(PongMessage) },
-            { NetworkMessageType.RPC_MESSAGE,               typeof(RPCMessage) }
+            { NetworkMessageType.RPC_MESSAGE,               typeof(RPCMessage) },
+            { NetworkMessageType.SPAWN_COIN,                typeof(SpawnCoinMessage) }
         };
 }
 

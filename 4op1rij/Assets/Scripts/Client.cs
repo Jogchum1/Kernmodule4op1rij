@@ -147,6 +147,12 @@ public class Client : MonoBehaviour
         if (connected) SendPackedMessage(chatQuitMsg);
         SceneManager.LoadScene(0);
     }
+
+    public void SpawnCoin()
+    {
+        SpawnCoinMessage coinMSG = new SpawnCoinMessage();
+
+    }
     // END UI FUNCTIONS
 
     public void SendPackedMessage(MessageHeader header)

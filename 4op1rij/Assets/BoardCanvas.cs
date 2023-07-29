@@ -17,4 +17,9 @@ public class BoardCanvas : MonoBehaviour
     {
         
     }
+
+    public void NewCoin()
+    {
+
+    }
 }
