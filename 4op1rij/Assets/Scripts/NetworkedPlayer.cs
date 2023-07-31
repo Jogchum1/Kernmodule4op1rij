@@ -21,7 +21,6 @@ public class NetworkedPlayer : NetworkedBehaviour
 {
     public bool isLocal = false;
     public bool isServer = false;
-    public GameObject coin;
 
     public Camera camera;
 
@@ -106,26 +105,39 @@ public class NetworkedPlayer : NetworkedBehaviour
             }
         }
     }
+
+    public void PlaceCoin()
+    {
+
+    }
+
     public void Fire(Vector3 pos, Vector3 dir)
     {
         // Debug.Log($"Called: {pos} {dir}");
-
+        Debug.Log("Test");
         GameObject obj;
         uint id = NetworkManager.NextNetworkID;
-        if (server.networkManager.SpawnWithId(NetworkSpawnObject.COIN, id, out obj))
+        SpawnCoinMessage msg = new SpawnCoinMessage
         {
-            obj.GetComponent<NetworkedBullet>().isServer = true;
+            playerID = id,
+            objectType = NetworkSpawnObject.COIN,
+            position = pos,
+        };
 
-            SpawnMessage msg = new SpawnMessage
-            {
-                objectType = NetworkSpawnObject.COIN,
-                networkId = id,
-                position = pos,
-                rotation = dir
-            };
+        server.SendBroadcast(msg);
+        //if (server.networkManager.SpawnWithId(NetworkSpawnObject.COIN, id, out obj))
+        //{
+        //    obj.GetComponent<NetworkedCoin>().isServer = true;
 
-            server.SendBroadcast(msg);
-        }
+        //    SpawnMessage msg = new SpawnMessage
+        //    {
+        //        objectType = NetworkSpawnObject.COIN,
+        //        networkId = id,
+        //        position = pos,
+        //        rotation = dir
+        //    };
+
+        //}
     }
 
     public void UpdateInput(InputUpdate received)

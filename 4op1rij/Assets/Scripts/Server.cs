@@ -65,9 +65,11 @@ public class Server : MonoBehaviour
             { NetworkMessageType.CHAT_QUIT,     HandleClientExit },
             { NetworkMessageType.INPUT_UPDATE,  HandleClientInput },
             { NetworkMessageType.PONG,          HandleClientPong },
-            {NetworkMessageType.RPC_MESSAGE,    HandleClientRPC }
+            { NetworkMessageType.RPC_MESSAGE,   HandleClientRPC },
+            { NetworkMessageType.SPAWN_COIN,   HandleClientCoinSpawn }
         };
 
+    
 
     public NetworkDriver m_Driver;
     public NetworkPipeline m_Pipeline;
@@ -81,6 +83,7 @@ public class Server : MonoBehaviour
 
     public ChatCanvas chat;
     public NetworkManager networkManager;
+    public BoardCanvas board;
 
     void Start()
     {
@@ -157,14 +160,14 @@ public class Server : MonoBehaviour
 
                     if (networkMessageHandlers.ContainsKey(msgType))
                     {
-                        try
-                        {
                             networkMessageHandlers[msgType].Invoke(this, m_Connections[i], header);
-                        }
-                        catch
-                        {
-                            Debug.LogError($"Badly formatted message received: {msgType}");
-                        }
+                        //try
+                        //{
+                        //}
+                        //catch
+                        //{
+                        //    Debug.LogError($"Badly formatted message received: {msgType}");
+                        //}
                     }
                     else
                     {
@@ -473,6 +476,34 @@ public class Server : MonoBehaviour
         {
             Debug.LogError("Received player input from unlisted connection");
         }
+    }
+
+    private static void HandleClientCoinSpawn(Server serv, NetworkConnection connection, MessageHeader header)
+    {
+        SpawnCoinMessage receivedCoinMSG = header as SpawnCoinMessage;
+
+        if (serv.nameList.ContainsKey(connection))
+        {
+            Debug.Log("Spawn coin");
+            serv.board.NewCoin(receivedCoinMSG.position, receivedCoinMSG.playerID);
+        }
+
+        //ChatMessage receivedMsg = header as ChatMessage;
+
+        //if (serv.nameList.ContainsKey(connection))
+        //{
+        //    string msg = $"{serv.nameList[connection]}: {receivedMsg.message}";
+        //    serv.chat.NewMessage(msg, ChatCanvas.chatColor);
+
+        //    receivedMsg.message = msg;
+
+        //    // forward message to all clients
+        //    serv.SendBroadcast(receivedMsg);
+        //}
+        //else
+        //{
+        //    Debug.LogError($"Received message from unlisted connection: {receivedMsg.message}");
+        //}
     }
 
 }

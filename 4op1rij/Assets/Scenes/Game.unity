@@ -1072,6 +1072,7 @@ MonoBehaviour:
   gameManager: {fileID: 1792271992}
   chat: {fileID: 1528346056}
   networkManager: {fileID: 1446307422}
+  board: {fileID: 1920366318}
 --- !u!4 &1446307424
 Transform:
   m_ObjectHideFlags: 0
@@ -1399,6 +1400,7 @@ MonoBehaviour:
   Done: 0
   networkManager: {fileID: 1653667257}
   chatCanvas: {fileID: 1528346056}
+  board: {fileID: 1920366318}
   gameManager: {fileID: 1792271992}
   input: {fileID: 1515471020}
 --- !u!4 &1653667260
@@ -1577,6 +1579,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9eb53a10cfef84990452661cc59c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 5456904836631911209, guid: 47b8e45ea75aed7438d7f04fdcad120b, type: 3}
+  parent: {fileID: 1920366322}
+  networkManager: {fileID: 1653667257}
 --- !u!114 &1920366319
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class SpawnCoinMessage : MessageHeader
 
 	public uint playerID;
 	public Vector3 position;
+	public NetworkSpawnObject objectType;
 
 	public override void SerializeObject(ref DataStreamWriter writer)
 	{
@@ -22,6 +23,8 @@ public class SpawnCoinMessage : MessageHeader
 		base.SerializeObject(ref writer);
 
 		writer.WriteUInt(playerID);
+		writer.WriteUInt((uint)objectType);
+		
 		writer.WriteFloat(position.x);
 		writer.WriteFloat(position.y);
 		writer.WriteFloat(position.z);
@@ -33,6 +36,8 @@ public class SpawnCoinMessage : MessageHeader
 		base.DeserializeObject(ref reader);
 
 		playerID = reader.ReadUInt();
+		objectType = (NetworkSpawnObject)reader.ReadUInt();
+
 		position.x = reader.ReadFloat();
 		position.y = reader.ReadFloat();
 		position.z = reader.ReadFloat();

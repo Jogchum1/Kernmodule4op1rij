@@ -49,18 +49,18 @@ public class NetworkedBullet : NetworkedBehaviour
             // if < 0
             //      TODO: Broadcast Destroy
 
-            if (Time.frameCount % 3 == 0)
-            { // assuming 60fps, so 20fps motion updates
-              // We could consider sending this over a non-reliable pipeline
-                UpdatePositionMessage posMsg = new UpdatePositionMessage
-                {
-                    networkId = this.networkId,
-                    position = transform.position,
-                    rotation = transform.eulerAngles
-                };
+            //if (Time.frameCount % 3 == 0)
+            //{ // assuming 60fps, so 20fps motion updates
+            //  // We could consider sending this over a non-reliable pipeline
+            //    UpdatePositionMessage posMsg = new UpdatePositionMessage
+            //    {
+            //        networkId = this.networkId,
+            //        position = transform.position,
+            //        rotation = transform.eulerAngles
+            //    };
 
-                server.SendBroadcast(posMsg);
-            }
+            //    server.SendBroadcast(posMsg);
+            //}
         }
     }
 }

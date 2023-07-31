@@ -6,7 +6,7 @@ using Unity.Collections;
 using UnityEngine.UI;
 using Unity.Networking.Transport.Utilities;
 using UnityEngine.SceneManagement;
-
+using System;
 
 public class Client : MonoBehaviour
 {
@@ -16,8 +16,11 @@ public class Client : MonoBehaviour
             { NetworkMessageType.NETWORK_DESTROY,           HandleNetworkDestroy },           // uint networkId
             { NetworkMessageType.NETWORK_UPDATE_POSITION,   HandleNetworkUpdate },            // uint networkId, vector3 position, vector3 rotation
             { NetworkMessageType.CHAT_MESSAGE,              HandleChatMessage },
-            { NetworkMessageType.PING,                      HandlePing }
+            { NetworkMessageType.PING,                      HandlePing },
+            { NetworkMessageType.SPAWN_COIN,                HandleCoinSpawn}
         };
+
+    
 
     public NetworkDriver m_Driver;
     public NetworkPipeline m_Pipeline;
@@ -26,6 +29,7 @@ public class Client : MonoBehaviour
     public NetworkManager networkManager;
 
     public ChatCanvas chatCanvas;
+    public BoardCanvas board;
     public GameManager gameManager;
 
     public static string serverIP;
@@ -148,11 +152,7 @@ public class Client : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void SpawnCoin()
-    {
-        SpawnCoinMessage coinMSG = new SpawnCoinMessage();
-
-    }
+   
     // END UI FUNCTIONS
 
     public void SendPackedMessage(MessageHeader header)
@@ -254,15 +254,19 @@ public class Client : MonoBehaviour
         client.SendPackedMessage(pongMsg);
     }
 
-    //public void CallOnServerObject(Client client, MessageHeader header)
-    //{
-    //    RPCMessage rpcMessage = new RPCMessage();
-    //    client.SendPackedMessage(rpcMessage);
-    //}
+    private static void HandleCoinSpawn(Client client, MessageHeader header)
+    {
+        SpawnCoinMessage coinMsg = header as SpawnCoinMessage;
+
+        client.board.NewCoin(coinMsg.position, coinMsg.playerID);
+
+        client.SendPackedMessage(coinMsg);
+    }
+
+    
 
     public void CallOnServerObject(string function, NetworkedBehaviour target, Vector3 pos, Vector3 rot)
     {
-        Debug.Log("TEST");
         RPCMessage rpc = new RPCMessage
         {
             target = target.networkId,
@@ -273,4 +277,6 @@ public class Client : MonoBehaviour
 
         SendPackedMessage(rpc);
     }
+
+
 }

@@ -6,20 +6,19 @@ using UnityEngine.UI;
 
 public class BoardCanvas : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject coin;
+    public Transform parent;
+    public NetworkManager networkManager;
+    public void NewCoin(Vector3 pos, uint playerID)
     {
-        
-    }
+        GameObject newCoin;
+        if(networkManager.SpawnWithId(NetworkSpawnObject.COIN, playerID, out newCoin)){
+            newCoin.transform.SetParent(parent);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void NewCoin()
-    {
-
+        //GameObject newCoin = Instantiate(coin);
+        //newCoin.transform.SetParent(parent);
+        //Debug.Log("Board");
+        //newCoin.GetComponent<NetworkManager>();
     }
 }
