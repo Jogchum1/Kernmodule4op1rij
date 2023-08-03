@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public struct InputUpdate
 {
     public float horizontal, vertical;
@@ -61,7 +60,27 @@ public class NetworkedPlayer : NetworkedBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                client.CallOnServerObject("Fire", this, transform.position, transform.forward);
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z * -1));
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                //RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                
+                if (!hit.collider)  
+                    Debug.Log("Nothing");
+               
+                Debug.Log(hit.collider.name);
+                
+
+                if (hit.collider.CompareTag("Press"))
+                {
+                    //Check bounds
+                    if (hit.collider.gameObject.GetComponent<Column>().targetLocation.y > 1.5f) return;
+
+                    Vector3 spawnPos = hit.collider.gameObject.GetComponent<Column>().spawnLocation;
+                    Vector3 targetPos = hit.collider.gameObject.GetComponent<Column>().targetLocation;
+                    Debug.Log(spawnPos + "spawnpos");
+                    client.CallOnServerObject("Fire", this, spawnPos, targetPos);
+                }
             }
         }
 
@@ -111,7 +130,7 @@ public class NetworkedPlayer : NetworkedBehaviour
 
     }
 
-    public void Fire(Vector3 pos, Vector3 dir)
+    public void Fire(Vector3 pos, Vector3 target)
     {
         // Debug.Log($"Called: {pos} {dir}");
         Debug.Log("Test");
@@ -121,7 +140,8 @@ public class NetworkedPlayer : NetworkedBehaviour
         {
             playerID = id,
             objectType = NetworkSpawnObject.COIN,
-            position = pos,
+            spawnPos = pos,
+            targetPos = target
         };
 
         server.SendBroadcast(msg);

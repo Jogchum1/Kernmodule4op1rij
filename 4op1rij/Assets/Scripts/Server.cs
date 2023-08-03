@@ -485,7 +485,7 @@ public class Server : MonoBehaviour
         if (serv.nameList.ContainsKey(connection))
         {
             Debug.Log("Spawn coin");
-            serv.board.NewCoin(receivedCoinMSG.position, receivedCoinMSG.playerID);
+            serv.board.NewCoin(receivedCoinMSG.spawnPos, receivedCoinMSG.targetPos, receivedCoinMSG.playerID);
         }
 
         //ChatMessage receivedMsg = header as ChatMessage;

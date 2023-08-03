@@ -9,11 +9,21 @@ public class BoardCanvas : MonoBehaviour
     public GameObject coin;
     public Transform parent;
     public NetworkManager networkManager;
-    public void NewCoin(Vector3 pos, uint playerID)
+    public Board board;
+    private RectTransform rect;
+
+    private void Start()
+    {
+        rect = GetComponent<RectTransform>();
+    }
+    public void NewCoin(Vector3 spawnPos, Vector3 targetPos, uint playerID)
     {
         GameObject newCoin;
         if(networkManager.SpawnWithId(NetworkSpawnObject.COIN, playerID, out newCoin)){
-            newCoin.transform.SetParent(parent);
+            newCoin.transform.SetParent(board.transform, true);
+            
+            newCoin.GetComponent<MoveCoin>().spawnPos = spawnPos;
+            newCoin.GetComponent<MoveCoin>().targetPosition = targetPos;
         }
 
         //GameObject newCoin = Instantiate(coin);
