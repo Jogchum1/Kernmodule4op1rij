@@ -11,6 +11,9 @@ public class GameManager : NetworkedBehaviour
     private Client client;
     private Server server;
 
+    public bool player1Turn = true;
+    public NetworkedPlayer player1test;
+    public NetworkedPlayer player2test;
 
     public void AwakeObject()
     {
@@ -27,6 +30,11 @@ public class GameManager : NetworkedBehaviour
     }
 
     private void Update()
+    {
+
+    }
+
+    public void CreateMatch(NetworkedPlayer player1, NetworkedPlayer player2)
     {
 
     }

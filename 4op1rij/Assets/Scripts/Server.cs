@@ -23,6 +23,7 @@ public enum NetworkMessageType
     PONG,
     RPC_MESSAGE,
     SPAWN_COIN,
+    PLAYER_TURN
 }
 
 public enum MessageType
@@ -53,7 +54,8 @@ public static class NetworkMessageInfo
             { NetworkMessageType.PING,                      typeof(PingMessage) },
             { NetworkMessageType.PONG,                      typeof(PongMessage) },
             { NetworkMessageType.RPC_MESSAGE,               typeof(RPCMessage) },
-            { NetworkMessageType.SPAWN_COIN,                typeof(SpawnCoinMessage) }
+            { NetworkMessageType.SPAWN_COIN,                typeof(SpawnCoinMessage) },
+            { NetworkMessageType.PLAYER_TURN,               typeof(PlayerTurnMessage)}
         };
 }
 
@@ -331,6 +333,17 @@ public class Server : MonoBehaviour
             };
 
             serv.SendUnicast(connection, responseMsg);
+
+            if(serv.playerInstances.Count == 1)
+            {
+                manager.player1test = playerInstance;
+                playerInstance.gameManager.player1test = playerInstance;
+            }
+            if(serv.playerInstances.Count == 2)
+            {
+                manager.player2test = playerInstance;
+                playerInstance.gameManager.player2test = playerInstance;
+            }
         }
         else
         {

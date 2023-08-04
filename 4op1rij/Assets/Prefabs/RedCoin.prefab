@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   targetPosition: {x: 0, y: 0, z: 0}
+  spawnPos: {x: 0, y: 0, z: 0}
 --- !u!114 &3280555779218285126
 MonoBehaviour:
   m_ObjectHideFlags: 0

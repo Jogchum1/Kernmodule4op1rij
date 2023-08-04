@@ -20,7 +20,7 @@ public class BoardCanvas : MonoBehaviour
     {
         GameObject newCoin;
         if(networkManager.SpawnWithId(NetworkSpawnObject.COIN, playerID, out newCoin)){
-            newCoin.transform.SetParent(board.transform, true);
+            newCoin.transform.SetParent(board.transform, false);
             
             newCoin.GetComponent<MoveCoin>().spawnPos = spawnPos;
             newCoin.GetComponent<MoveCoin>().targetPosition = targetPos;
