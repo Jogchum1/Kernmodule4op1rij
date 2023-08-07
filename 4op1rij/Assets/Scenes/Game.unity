@@ -134,13 +134,49 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 213849899653784858, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 213849899653784858, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 213849899653784858, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 938841872911190564, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1079652266117966643, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1505454346660679404, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2090290665758805474, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090290665758805474, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090290665758805474, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2607053945947523861, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810827826965960807, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3490914406747296929, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
       propertyPath: m_IsTrigger
@@ -153,6 +189,14 @@ PrefabInstance:
     - target: {fileID: 3782669264472134137, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5989276272033090318, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5989276272033090318, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.2
       objectReference: {fileID: 0}
     - target: {fileID: 6302402546921651485, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
       propertyPath: m_Pivot.x
@@ -189,6 +233,18 @@ PrefabInstance:
     - target: {fileID: 6302402546921651485, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
       propertyPath: m_SizeDelta.y
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302402546921651485, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.259662
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302402546921651485, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.259662
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302402546921651485, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.259662
       objectReference: {fileID: 0}
     - target: {fileID: 6302402546921651485, guid: 8dcdac8e2fab4b1408bb7e14dda23e85, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1616,6 +1672,8 @@ MonoBehaviour:
   networkId: 0
   isLocal: 0
   isServer: 0
+  playerTurn: 1
+  board: {fileID: 0}
 --- !u!4 &1792271993
 Transform:
   m_ObjectHideFlags: 0
@@ -1668,6 +1726,7 @@ MonoBehaviour:
   parent: {fileID: 1920366322}
   networkManager: {fileID: 1653667257}
   board: {fileID: 61446268}
+  canvas: {fileID: 1920366321}
 --- !u!114 &1920366319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1700,7 +1759,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1717,7 +1776,7 @@ Canvas:
   m_GameObject: {fileID: 1920366317}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1340461292}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

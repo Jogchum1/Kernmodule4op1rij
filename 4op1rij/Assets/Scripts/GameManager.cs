@@ -11,9 +11,9 @@ public class GameManager : NetworkedBehaviour
     private Client client;
     private Server server;
 
-    public bool player1Turn = true;
-    public NetworkedPlayer player1test;
-    public NetworkedPlayer player2test;
+    public bool playerTurn = true;
+    public BoardCanvas board;
+   
 
     public void AwakeObject()
     {
@@ -27,6 +27,7 @@ public class GameManager : NetworkedBehaviour
         {
             server = FindObjectOfType<Server>();
         }
+        board = FindObjectOfType<BoardCanvas>();
     }
 
     private void Update()
@@ -34,9 +35,11 @@ public class GameManager : NetworkedBehaviour
 
     }
 
-    public void CreateMatch(NetworkedPlayer player1, NetworkedPlayer player2)
+    public void SpawnCoin()
     {
 
     }
+
+   
 }
    

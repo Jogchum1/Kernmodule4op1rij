@@ -334,16 +334,14 @@ public class Server : MonoBehaviour
 
             serv.SendUnicast(connection, responseMsg);
 
-            if(serv.playerInstances.Count == 1)
-            {
-                manager.player1test = playerInstance;
-                playerInstance.gameManager.player1test = playerInstance;
-            }
-            if(serv.playerInstances.Count == 2)
-            {
-                manager.player2test = playerInstance;
-                playerInstance.gameManager.player2test = playerInstance;
-            }
+            //if(serv.playerInstances.Count == 1)
+            //{
+            //    playerInstance.gameManager.playerTurn = true;
+            //}
+            //if(serv.playerInstances.Count == 2)
+            //{
+            //    playerInstance.gameManager.playerTurn = false;
+            //}
         }
         else
         {

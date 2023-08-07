@@ -43,6 +43,7 @@ public class NetworkedPlayer : NetworkedBehaviour
         {
             server = FindObjectOfType<Server>();
         }
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -59,10 +60,10 @@ public class NetworkedPlayer : NetworkedBehaviour
             };
             client.SendPackedMessage(inputMsg);
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                PlaceCoin();
-            }
+            //if (Input.GetMouseButtonDown(0) && gameManager.playerTurn)
+            //{
+            //    PlaceCoin();
+            //}
         }
 
         if (isServer)
@@ -106,33 +107,45 @@ public class NetworkedPlayer : NetworkedBehaviour
         }
     }
 
-    public void PlaceCoin()
+    public void PlaceCoin(Transform button)
     {
+
+        Debug.Log("HIT BUTTON" + button.name);
+
+        Vector3 spawnPos = button.GetComponentInParent<Column>().spawnLocation;
+        Vector3 targetPos = button.GetComponentInParent<Column>().targetLocation;
+
+        client.CallOnServerObject("Fire", this, spawnPos, targetPos);
+
+        button.GetComponentInParent<Column>().targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
         //something check if your turn?
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z * -1));
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        //RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-        if (!hit.collider)
-            Debug.Log("Nothing");
-
-        Debug.Log(hit.collider.name);
+        //Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z * -1));
+        //Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
 
-        if (hit.collider.CompareTag("Press"))
-        {
-            //Check bounds
-            //if (hit.collider.gameObject.GetComponent<Column>().targetLocation.y > 1.5f) return;
+        //RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos2D), Vector2.zero);
 
-            Vector3 spawnPos = hit.collider.gameObject.GetComponent<Column>().spawnLocation;
-            Vector3 targetPos = hit.collider.gameObject.GetComponent<Column>().targetLocation;
-            Debug.Log(spawnPos + "spawnpos");
-            client.CallOnServerObject("Fire", this, spawnPos, targetPos);
-            hit.collider.gameObject.GetComponent<Column>().targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
+        //if (!hit.collider)
+        //    Debug.Log("Nothing");
 
-        }
+        //Debug.Log(hit.point);
+
+        //Debug.Log(hit.collider.name);
+
+
+        //if (hit.collider.CompareTag("Press"))
+        //{
+        //    //Check bounds
+        //    //if (hit.collider.gameObject.GetComponent<Column>().targetLocation.y > 1.5f) return;
+
+        //    Vector3 spawnPos = hit.collider.gameObject.GetComponent<Column>().spawnLocation;
+        //    Vector3 targetPos = hit.collider.gameObject.GetComponent<Column>().targetLocation;
+        //    Debug.Log(spawnPos + "spawnpos");
+        //    client.CallOnServerObject("Fire", this, spawnPos, targetPos);
+        //    hit.collider.gameObject.GetComponent<Column>().targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
+
+        //}
     }
 
     public void Fire(Vector3 pos, Vector3 target)

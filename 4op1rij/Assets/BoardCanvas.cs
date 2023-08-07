@@ -11,7 +11,7 @@ public class BoardCanvas : MonoBehaviour
     public NetworkManager networkManager;
     public Board board;
     private RectTransform rect;
-
+    public Canvas canvas;
     private void Start()
     {
         rect = GetComponent<RectTransform>();
