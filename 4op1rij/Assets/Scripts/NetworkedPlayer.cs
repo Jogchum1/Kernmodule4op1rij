@@ -117,41 +117,21 @@ public class NetworkedPlayer : NetworkedBehaviour
 
         client.CallOnServerObject("Fire", this, spawnPos, targetPos);
 
-        button.GetComponentInParent<Column>().targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
-        //something check if your turn?
+        //button.GetComponentInParent<Column>().targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
+        UpdateColumnMessage msg = new UpdateColumnMessage
+        {
+            columnNumber = button.GetComponentInParent<Column>().col
+        };
 
-        //Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z * -1));
-        //Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-
-        //RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos2D), Vector2.zero);
-
-        //if (!hit.collider)
-        //    Debug.Log("Nothing");
-
-        //Debug.Log(hit.point);
-
-        //Debug.Log(hit.collider.name);
-
-
-        //if (hit.collider.CompareTag("Press"))
-        //{
-        //    //Check bounds
-        //    //if (hit.collider.gameObject.GetComponent<Column>().targetLocation.y > 1.5f) return;
-
-        //    Vector3 spawnPos = hit.collider.gameObject.GetComponent<Column>().spawnLocation;
-        //    Vector3 targetPos = hit.collider.gameObject.GetComponent<Column>().targetLocation;
-        //    Debug.Log(spawnPos + "spawnpos");
-        //    client.CallOnServerObject("Fire", this, spawnPos, targetPos);
-        //    hit.collider.gameObject.GetComponent<Column>().targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
-
-        //}
+        if (isLocal)
+            client.SendPackedMessage(msg);
+        if(isServer)
+            server.SendBroadcast(msg);
     }
 
     public void Fire(Vector3 pos, Vector3 target)
     {
-        // Debug.Log($"Called: {pos} {dir}");
-        Debug.Log("Test");
+        Debug.Log("Fire");
         GameObject obj;
         uint id = NetworkManager.NextNetworkID;
         SpawnCoinMessage msg = new SpawnCoinMessage
@@ -163,19 +143,7 @@ public class NetworkedPlayer : NetworkedBehaviour
         };
 
         server.SendBroadcast(msg);
-        //if (server.networkManager.SpawnWithId(NetworkSpawnObject.COIN, id, out obj))
-        //{
-        //    obj.GetComponent<NetworkedCoin>().isServer = true;
-
-        //    SpawnMessage msg = new SpawnMessage
-        //    {
-        //        objectType = NetworkSpawnObject.COIN,
-        //        networkId = id,
-        //        position = pos,
-        //        rotation = dir
-        //    };
-
-        //}
+       
     }
 
     public void UpdateInput(InputUpdate received)

@@ -17,7 +17,8 @@ public class Client : MonoBehaviour
             { NetworkMessageType.NETWORK_UPDATE_POSITION,   HandleNetworkUpdate },            // uint networkId, vector3 position, vector3 rotation
             { NetworkMessageType.CHAT_MESSAGE,              HandleChatMessage },
             { NetworkMessageType.PING,                      HandlePing },
-            { NetworkMessageType.SPAWN_COIN,                HandleCoinSpawn}
+            { NetworkMessageType.SPAWN_COIN,                HandleCoinSpawn},
+            { NetworkMessageType.UPDATE_COLUMN,             HandleColumnUpdate}
         };
 
     
@@ -270,6 +271,13 @@ public class Client : MonoBehaviour
         client.SendPackedMessage(coinMsg);
     }
 
+    private static void HandleColumnUpdate(Client client, MessageHeader header)
+    {
+        UpdateColumnMessage columnMsg = header as UpdateColumnMessage;
+        
+        Debug.Log("client msg");
+        client.SendPackedMessage(columnMsg);
+    }
     
 
     public void CallOnServerObject(string function, NetworkedBehaviour target, Vector3 pos, Vector3 rot)
@@ -284,6 +292,7 @@ public class Client : MonoBehaviour
 
         SendPackedMessage(rpc);
     }
+
 
 
 }

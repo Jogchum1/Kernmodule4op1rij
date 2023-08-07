@@ -23,7 +23,8 @@ public enum NetworkMessageType
     PONG,
     RPC_MESSAGE,
     SPAWN_COIN,
-    PLAYER_TURN
+    PLAYER_TURN,
+    UPDATE_COLUMN
 }
 
 public enum MessageType
@@ -55,7 +56,8 @@ public static class NetworkMessageInfo
             { NetworkMessageType.PONG,                      typeof(PongMessage) },
             { NetworkMessageType.RPC_MESSAGE,               typeof(RPCMessage) },
             { NetworkMessageType.SPAWN_COIN,                typeof(SpawnCoinMessage) },
-            { NetworkMessageType.PLAYER_TURN,               typeof(PlayerTurnMessage)}
+            { NetworkMessageType.PLAYER_TURN,               typeof(PlayerTurnMessage)},
+            { NetworkMessageType.UPDATE_COLUMN,             typeof(UpdateColumnMessage)}
         };
 }
 
@@ -68,10 +70,11 @@ public class Server : MonoBehaviour
             { NetworkMessageType.INPUT_UPDATE,  HandleClientInput },
             { NetworkMessageType.PONG,          HandleClientPong },
             { NetworkMessageType.RPC_MESSAGE,   HandleClientRPC },
-            { NetworkMessageType.SPAWN_COIN,   HandleClientCoinSpawn }
+            { NetworkMessageType.SPAWN_COIN,    HandleClientCoinSpawn },
+            { NetworkMessageType.UPDATE_COLUMN, HandleClientColumnUpdate }
         };
 
-    
+   
 
     public NetworkDriver m_Driver;
     public NetworkPipeline m_Pipeline;
@@ -499,22 +502,22 @@ public class Server : MonoBehaviour
             serv.board.NewCoin(receivedCoinMSG.spawnPos, receivedCoinMSG.targetPos, receivedCoinMSG.playerID);
         }
 
-        //ChatMessage receivedMsg = header as ChatMessage;
+        
+    }
 
-        //if (serv.nameList.ContainsKey(connection))
-        //{
-        //    string msg = $"{serv.nameList[connection]}: {receivedMsg.message}";
-        //    serv.chat.NewMessage(msg, ChatCanvas.chatColor);
+    private static void HandleClientColumnUpdate(Server serv, NetworkConnection con, MessageHeader header)
+    {
+        UpdateColumnMessage columnMSG = header as UpdateColumnMessage;
 
-        //    receivedMsg.message = msg;
-
-        //    // forward message to all clients
-        //    serv.SendBroadcast(receivedMsg);
-        //}
-        //else
-        //{
-        //    Debug.LogError($"Received message from unlisted connection: {receivedMsg.message}");
-        //}
+        
+        foreach (Column col in serv.gameManager.columns)
+        {
+            if(col.col == columnMSG.columnNumber)
+            {
+                col.UpdateTargetLocation();
+            }
+        }
+        Debug.Log("server msg");
     }
 
 }

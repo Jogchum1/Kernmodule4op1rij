@@ -13,8 +13,8 @@ public class GameManager : NetworkedBehaviour
 
     public bool playerTurn = true;
     public BoardCanvas board;
-   
 
+    public Column[] columns;
     public void AwakeObject()
     {
 
@@ -28,6 +28,7 @@ public class GameManager : NetworkedBehaviour
             server = FindObjectOfType<Server>();
         }
         board = FindObjectOfType<BoardCanvas>();
+        columns = FindObjectsOfType<Column>();
     }
 
     private void Update()
@@ -35,10 +36,7 @@ public class GameManager : NetworkedBehaviour
 
     }
 
-    public void SpawnCoin()
-    {
-
-    }
+    
 
    
 }
