@@ -11,7 +11,7 @@ public class GameManager : NetworkedBehaviour
     private Client client;
     private Server server;
 
-    public bool playerTurn = true;
+    public bool playerTurn = false;
     public BoardCanvas board;
 
     public Column[] columns;

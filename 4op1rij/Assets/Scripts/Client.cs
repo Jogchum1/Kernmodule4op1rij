@@ -18,10 +18,11 @@ public class Client : MonoBehaviour
             { NetworkMessageType.CHAT_MESSAGE,              HandleChatMessage },
             { NetworkMessageType.PING,                      HandlePing },
             { NetworkMessageType.SPAWN_COIN,                HandleCoinSpawn},
-            { NetworkMessageType.UPDATE_COLUMN,             HandleColumnUpdate}
+            { NetworkMessageType.UPDATE_COLUMN,             HandleColumnUpdate},
+            { NetworkMessageType.PLAYER_TURN,               HandlePlayerTurn }
         };
 
-    
+   
 
     public NetworkDriver m_Driver;
     public NetworkPipeline m_Pipeline;
@@ -304,6 +305,16 @@ public class Client : MonoBehaviour
         SendPackedMessage(rpc);
     }
 
+    private static void HandlePlayerTurn(Client client, MessageHeader header)
+    {
+        PlayerTurnMessage turnMSG = header as PlayerTurnMessage;
 
+
+        Debug.Log("CHANGE TURN");
+        client.gameManager.playerTurn = turnMSG.playerTurn;
+
+
+        
+    }
 
 }

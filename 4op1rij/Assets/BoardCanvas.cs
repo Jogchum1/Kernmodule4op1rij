@@ -35,10 +35,5 @@ public class BoardCanvas : MonoBehaviour
                 }
             }
         }
-
-        //GameObject newCoin = Instantiate(coin);
-        //newCoin.transform.SetParent(parent);
-        //Debug.Log("Board");
-        //newCoin.GetComponent<NetworkManager>();
     }
 }

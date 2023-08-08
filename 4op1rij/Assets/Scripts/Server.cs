@@ -71,10 +71,11 @@ public class Server : MonoBehaviour
             { NetworkMessageType.PONG,          HandleClientPong },
             { NetworkMessageType.RPC_MESSAGE,   HandleClientRPC },
             { NetworkMessageType.SPAWN_COIN,    HandleClientCoinSpawn },
-            { NetworkMessageType.UPDATE_COLUMN, HandleClientColumnUpdate }
+            { NetworkMessageType.UPDATE_COLUMN, HandleClientColumnUpdate },
+            { NetworkMessageType.PLAYER_TURN,   HandleClientTurn}
         };
 
-   
+    
 
     public NetworkDriver m_Driver;
     public NetworkPipeline m_Pipeline;
@@ -89,6 +90,7 @@ public class Server : MonoBehaviour
     public ChatCanvas chat;
     public NetworkManager networkManager;
     public BoardCanvas board;
+    public static int playerCount;
 
     void Start()
     {
@@ -325,9 +327,32 @@ public class Server : MonoBehaviour
             manager.isLocal = false;
             manager.AwakeObject();
             networkId = playerInstance.networkId;
-
+            playerCount++;
+            Debug.Log(playerCount);
             serv.playerInstances.Add(connection, playerInstance);
 
+            if(playerCount == 1)
+            {
+                //playerInstance.playerTurn = false;
+
+                PlayerTurnMessage turnMSG = new PlayerTurnMessage
+                {
+                    playerTurn = true
+                };
+
+                serv.SendUnicast(connection, turnMSG);
+            }
+            if(playerCount == 2)
+            {
+                //playerInstance.playerTurn = true;
+
+                PlayerTurnMessage turnMSG = new PlayerTurnMessage
+                {
+                    playerTurn = false
+                };
+
+                serv.SendUnicast(connection, turnMSG);
+            }
             // Send spawn local player back to sender
             HandshakeResponseMessage responseMsg = new HandshakeResponseMessage
             {
@@ -335,16 +360,10 @@ public class Server : MonoBehaviour
                 networkId = playerInstance.networkId
             };
 
+
             serv.SendUnicast(connection, responseMsg);
 
-            //if(serv.playerInstances.Count == 1)
-            //{
-            //    playerInstance.gameManager.playerTurn = true;
-            //}
-            //if(serv.playerInstances.Count == 2)
-            //{
-            //    playerInstance.gameManager.playerTurn = false;
-            //}
+            
         }
         else
         {
@@ -518,6 +537,16 @@ public class Server : MonoBehaviour
             }
         }
         Debug.Log("server msg");
+    }
+
+    private static void HandleClientTurn(Server serv, NetworkConnection con, MessageHeader header)
+    {
+        PlayerTurnMessage turnMSG = header as PlayerTurnMessage;
+
+        NetworkedPlayer tmp = serv.playerInstances[con];
+        Debug.Log(tmp);
+        Debug.Log(turnMSG.playerTurn);
+        tmp.gameManager.playerTurn = turnMSG.playerTurn;
     }
 
 }

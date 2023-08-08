@@ -60,10 +60,6 @@ public class NetworkedPlayer : NetworkedBehaviour
             };
             client.SendPackedMessage(inputMsg);
 
-            //if (Input.GetMouseButtonDown(0) && gameManager.playerTurn)
-            //{
-            //    PlaceCoin();
-            //}
         }
 
         if (isServer)
@@ -111,25 +107,22 @@ public class NetworkedPlayer : NetworkedBehaviour
     {
 
         Debug.Log("HIT BUTTON" + button.name);
+        if (gameManager.playerTurn)
+        {
+            Vector3 spawnPos = button.GetComponentInParent<Column>().spawnLocation;
+            Vector3 targetPos = button.GetComponentInParent<Column>().targetLocation;
 
-        Vector3 spawnPos = button.GetComponentInParent<Column>().spawnLocation;
-        Vector3 targetPos = button.GetComponentInParent<Column>().targetLocation;
+            uint columnNumber = button.GetComponentInParent<Column>().col;
+            client.CallOnServerObject("Fire", this, spawnPos, targetPos, columnNumber);
 
+            PlayerTurnMessage turnMSG = new PlayerTurnMessage
+            {
+                playerTurn = !gameManager.playerTurn
+            };
 
-        uint columnNumber = button.GetComponentInParent<Column>().col;
-        client.CallOnServerObject("Fire", this, spawnPos, targetPos, columnNumber);
+            client.SendPackedMessage(turnMSG);
+        }
 
-        //button.GetComponentInParent<Column>().targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
-        //Debug.Log("Gebeurt dit uberhaupt?");
-
-        //UpdateColumnMessage ColMsg = new UpdateColumnMessage
-        //{
-        //    columnNumber = button.GetComponentInParent<Column>().col
-        //};
-
-        //client.SendPackedMessage(ColMsg);
-        
-        //server.SendBroadcast(ColMsg);
     }
 
     public void Fire(Vector3 pos, Vector3 target, uint columNumber)
@@ -147,10 +140,6 @@ public class NetworkedPlayer : NetworkedBehaviour
         };
 
         server.SendBroadcast(msg);
-
-        
-
-
     }
 
     
