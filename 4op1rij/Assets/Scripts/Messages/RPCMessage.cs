@@ -17,6 +17,7 @@ public class RPCMessage : MessageHeader
 
     public string function;
     public uint target;
+    public uint columnNumber;
     public Vector3 position, rotation;
     public override void SerializeObject(ref DataStreamWriter writer)
     {
@@ -25,6 +26,7 @@ public class RPCMessage : MessageHeader
 
         writer.WriteUInt((uint)target);
         writer.WriteFixedString128(function);
+        writer.WriteUInt((uint)columnNumber);
         writer.WriteFloat(position.x);
         writer.WriteFloat(position.y);
         writer.WriteFloat(position.z);
@@ -41,6 +43,7 @@ public class RPCMessage : MessageHeader
 
         target = reader.ReadUInt();
         function = reader.ReadFixedString128().ToString();
+        columnNumber = reader.ReadUInt();
         position.x = reader.ReadFloat();
         position.y = reader.ReadFloat();
         position.z = reader.ReadFloat();

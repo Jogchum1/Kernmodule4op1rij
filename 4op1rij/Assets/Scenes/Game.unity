@@ -1674,6 +1674,7 @@ MonoBehaviour:
   isServer: 0
   playerTurn: 1
   board: {fileID: 0}
+  columns: []
 --- !u!4 &1792271993
 Transform:
   m_ObjectHideFlags: 0
@@ -1725,6 +1726,7 @@ MonoBehaviour:
   coin: {fileID: 5456904836631911209, guid: 47b8e45ea75aed7438d7f04fdcad120b, type: 3}
   parent: {fileID: 1920366322}
   networkManager: {fileID: 1653667257}
+  gameManager: {fileID: 1792271992}
   board: {fileID: 61446268}
   canvas: {fileID: 1920366321}
 --- !u!114 &1920366319

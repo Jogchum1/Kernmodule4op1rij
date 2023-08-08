@@ -115,21 +115,24 @@ public class NetworkedPlayer : NetworkedBehaviour
         Vector3 spawnPos = button.GetComponentInParent<Column>().spawnLocation;
         Vector3 targetPos = button.GetComponentInParent<Column>().targetLocation;
 
-        client.CallOnServerObject("Fire", this, spawnPos, targetPos);
+
+        uint columnNumber = button.GetComponentInParent<Column>().col;
+        client.CallOnServerObject("Fire", this, spawnPos, targetPos, columnNumber);
 
         //button.GetComponentInParent<Column>().targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
-        UpdateColumnMessage msg = new UpdateColumnMessage
-        {
-            columnNumber = button.GetComponentInParent<Column>().col
-        };
+        //Debug.Log("Gebeurt dit uberhaupt?");
 
-        if (isLocal)
-            client.SendPackedMessage(msg);
-        if(isServer)
-            server.SendBroadcast(msg);
+        //UpdateColumnMessage ColMsg = new UpdateColumnMessage
+        //{
+        //    columnNumber = button.GetComponentInParent<Column>().col
+        //};
+
+        //client.SendPackedMessage(ColMsg);
+        
+        //server.SendBroadcast(ColMsg);
     }
 
-    public void Fire(Vector3 pos, Vector3 target)
+    public void Fire(Vector3 pos, Vector3 target, uint columNumber)
     {
         Debug.Log("Fire");
         GameObject obj;
@@ -137,14 +140,20 @@ public class NetworkedPlayer : NetworkedBehaviour
         SpawnCoinMessage msg = new SpawnCoinMessage
         {
             playerID = id,
+            column = columNumber,
             objectType = NetworkSpawnObject.COIN,
             spawnPos = pos,
             targetPos = target
         };
 
         server.SendBroadcast(msg);
-       
+
+        
+
+
     }
+
+    
 
     public void UpdateInput(InputUpdate received)
     {

@@ -479,7 +479,7 @@ public class Server : MonoBehaviour
         {
             if (serv.playerInstances[connection].networkId == rpcMsg.target)
             {
-                serv.playerInstances[connection].Fire(rpcMsg.position, rpcMsg.rotation);
+                serv.playerInstances[connection].Fire(rpcMsg.position, rpcMsg.rotation, rpcMsg.columnNumber);
             }
             else
             {
@@ -499,7 +499,7 @@ public class Server : MonoBehaviour
         if (serv.nameList.ContainsKey(connection))
         {
             Debug.Log("Spawn coin");
-            serv.board.NewCoin(receivedCoinMSG.spawnPos, receivedCoinMSG.targetPos, receivedCoinMSG.playerID);
+            serv.board.NewCoin(receivedCoinMSG.spawnPos, receivedCoinMSG.targetPos, receivedCoinMSG.playerID, receivedCoinMSG.column);
         }
 
         

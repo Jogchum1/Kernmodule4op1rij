@@ -14,6 +14,7 @@ public class SpawnCoinMessage : MessageHeader
 	}
 
 	public uint playerID;
+	public uint column;
 	public Vector3 spawnPos;
 	public Vector3 targetPos;
 	public NetworkSpawnObject objectType;
@@ -24,6 +25,7 @@ public class SpawnCoinMessage : MessageHeader
 		base.SerializeObject(ref writer);
 
 		writer.WriteUInt(playerID);
+		writer.WriteUInt(column);
 		writer.WriteUInt((uint)objectType);
 		
 		writer.WriteFloat(spawnPos.x);
@@ -41,6 +43,7 @@ public class SpawnCoinMessage : MessageHeader
 		base.DeserializeObject(ref reader);
 
 		playerID = reader.ReadUInt();
+		column = reader.ReadUInt();
 		objectType = (NetworkSpawnObject)reader.ReadUInt();
 
 		spawnPos.x = reader.ReadFloat();

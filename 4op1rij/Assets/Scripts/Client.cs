@@ -265,27 +265,38 @@ public class Client : MonoBehaviour
     private static void HandleCoinSpawn(Client client, MessageHeader header)
     {
         SpawnCoinMessage coinMsg = header as SpawnCoinMessage;
+        Debug.Log(coinMsg.spawnPos);
+        Debug.Log(coinMsg.targetPos);
+        Debug.Log(coinMsg.playerID);
+        Debug.Log(coinMsg.column);
 
-        client.board.NewCoin(coinMsg.spawnPos, coinMsg.targetPos, coinMsg.playerID);
+        client.board.NewCoin(coinMsg.spawnPos, coinMsg.targetPos, coinMsg.playerID, coinMsg.column);
 
         client.SendPackedMessage(coinMsg);
     }
 
-    private static void HandleColumnUpdate(Client client, MessageHeader header)
+    static void HandleColumnUpdate(Client client, MessageHeader header)
     {
         UpdateColumnMessage columnMsg = header as UpdateColumnMessage;
-        
+        foreach (Column col in client.gameManager.columns)
+        {
+            if (col.col == columnMsg.columnNumber)
+            {
+                col.UpdateTargetLocation();
+            }
+        }
         Debug.Log("client msg");
         client.SendPackedMessage(columnMsg);
     }
     
 
-    public void CallOnServerObject(string function, NetworkedBehaviour target, Vector3 pos, Vector3 rot)
+    public void CallOnServerObject(string function, NetworkedBehaviour target, Vector3 pos, Vector3 rot, uint col)
     {
         RPCMessage rpc = new RPCMessage
         {
             target = target.networkId,
             function = function,
+            columnNumber = col,
             position = pos,
             rotation = rot
         };
