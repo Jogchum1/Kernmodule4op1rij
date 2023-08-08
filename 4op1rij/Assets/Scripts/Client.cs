@@ -266,10 +266,6 @@ public class Client : MonoBehaviour
     private static void HandleCoinSpawn(Client client, MessageHeader header)
     {
         SpawnCoinMessage coinMsg = header as SpawnCoinMessage;
-        Debug.Log(coinMsg.spawnPos);
-        Debug.Log(coinMsg.targetPos);
-        Debug.Log(coinMsg.playerID);
-        Debug.Log(coinMsg.column);
 
         client.board.NewCoin(coinMsg.spawnPos, coinMsg.targetPos, coinMsg.playerID, coinMsg.column);
 
@@ -286,7 +282,7 @@ public class Client : MonoBehaviour
                 col.UpdateTargetLocation();
             }
         }
-        Debug.Log("client msg");
+        //Debug.Log("client msg");
         client.SendPackedMessage(columnMsg);
     }
     
@@ -309,12 +305,10 @@ public class Client : MonoBehaviour
     {
         PlayerTurnMessage turnMSG = header as PlayerTurnMessage;
 
+        //client.gameManager.Test();
 
-        Debug.Log("CHANGE TURN");
-        client.gameManager.playerTurn = turnMSG.playerTurn;
-
-
-        
+        //Debug.Log(turnMSG.playerTurn);
+        //client.SendPackedMessage(turnMSG);
     }
 
 }

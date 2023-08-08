@@ -21,6 +21,7 @@ public class NetworkedPlayer : NetworkedBehaviour
     public bool isLocal = false;
     public bool isServer = false;
     public GameManager gameManager;
+    public bool playerTurn  = false;
 
     public Camera camera;
 
@@ -106,8 +107,8 @@ public class NetworkedPlayer : NetworkedBehaviour
     public void PlaceCoin(Transform button)
     {
 
-        Debug.Log("HIT BUTTON" + button.name);
-        if (gameManager.playerTurn)
+        //Debug.Log("HIT BUTTON" + button.name);
+        if (playerTurn)
         {
             Vector3 spawnPos = button.GetComponentInParent<Column>().spawnLocation;
             Vector3 targetPos = button.GetComponentInParent<Column>().targetLocation;
@@ -117,9 +118,9 @@ public class NetworkedPlayer : NetworkedBehaviour
 
             PlayerTurnMessage turnMSG = new PlayerTurnMessage
             {
-                playerTurn = !gameManager.playerTurn
+                //playerTurn = !gameManager.playerTurn
             };
-
+            //Debug.Log(!gameManager.playerTurn);
             client.SendPackedMessage(turnMSG);
         }
 

@@ -11,7 +11,6 @@ public class GameManager : NetworkedBehaviour
     private Client client;
     private Server server;
 
-    public bool playerTurn = false;
     public BoardCanvas board;
 
     public Column[] columns;
@@ -33,11 +32,15 @@ public class GameManager : NetworkedBehaviour
 
     private void Update()
     {
-
+        //Debug.Log(playerTurn);
     }
 
     
-
+    public void Test()
+    {
+        //playerTurn = !playerTurn;
+        Debug.Log("TESSSSSSSSSST");
+    }
    
 }
    

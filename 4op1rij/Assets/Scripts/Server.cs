@@ -339,7 +339,7 @@ public class Server : MonoBehaviour
                 {
                     playerTurn = true
                 };
-
+                Debug.Log("tset");
                 serv.SendUnicast(connection, turnMSG);
             }
             if(playerCount == 2)
@@ -536,17 +536,17 @@ public class Server : MonoBehaviour
                 col.UpdateTargetLocation();
             }
         }
-        Debug.Log("server msg");
+        //Debug.Log("server msg");
     }
 
     private static void HandleClientTurn(Server serv, NetworkConnection con, MessageHeader header)
     {
         PlayerTurnMessage turnMSG = header as PlayerTurnMessage;
 
-        NetworkedPlayer tmp = serv.playerInstances[con];
-        Debug.Log(tmp);
-        Debug.Log(turnMSG.playerTurn);
-        tmp.gameManager.playerTurn = turnMSG.playerTurn;
+        
+        serv.playerInstances[con].playerTurn = turnMSG.playerTurn;
+       
+        //serv.SendBroadcast(turnMSG);
     }
 
 }
