@@ -8,10 +8,15 @@ public class GameManager : NetworkedBehaviour
     public bool isLocal;
     public bool isServer;
 
+
+
     private Client client;
     private Server server;
 
     public BoardCanvas board;
+    public bool playerTurn = false;
+    public bool gameOver = false;
+    public bool placedCoin = false;
 
     public Column[] columns;
     public void AwakeObject()
@@ -32,14 +37,51 @@ public class GameManager : NetworkedBehaviour
 
     private void Update()
     {
-        //Debug.Log(playerTurn);
+        CheckResult();
     }
 
+    public void CheckResult() {
+
+        if (isServer)
+        {
+            if(placedCoin == true)
+            {
+                //Check result stuff
+
+
+
+                EndRoundMessage roundMSG = new EndRoundMessage
+                {
+                    hasWon = this.gameOver,
+
+                };
+
+                server.SendBroadcast(roundMSG);
+            }
+
+        }
+    }
     
-    public void Test()
+    public void EndOfRound(EndRoundMessage msg)
     {
-        //playerTurn = !playerTurn;
-        Debug.Log("TESSSSSSSSSST");
+        Debug.Log("test of dit wordt gedaan");
+        if (msg.hasWon)
+        {
+            Debug.Log("you've won");
+        }
+        else
+        {
+            if (playerTurn)
+            {
+                playerTurn = false;
+            }
+            else
+            {
+                playerTurn = true;
+            }
+        }
+
+        placedCoin = false;
     }
    
 }

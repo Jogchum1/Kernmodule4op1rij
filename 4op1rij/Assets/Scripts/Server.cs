@@ -24,7 +24,8 @@ public enum NetworkMessageType
     RPC_MESSAGE,
     SPAWN_COIN,
     PLAYER_TURN,
-    UPDATE_COLUMN
+    UPDATE_COLUMN,
+    END_ROUND
 }
 
 public enum MessageType
@@ -57,7 +58,8 @@ public static class NetworkMessageInfo
             { NetworkMessageType.RPC_MESSAGE,               typeof(RPCMessage) },
             { NetworkMessageType.SPAWN_COIN,                typeof(SpawnCoinMessage) },
             { NetworkMessageType.PLAYER_TURN,               typeof(PlayerTurnMessage)},
-            { NetworkMessageType.UPDATE_COLUMN,             typeof(UpdateColumnMessage)}
+            { NetworkMessageType.UPDATE_COLUMN,             typeof(UpdateColumnMessage)},
+            { NetworkMessageType.END_ROUND,                 typeof(EndRoundMessage)}
         };
 }
 
@@ -71,8 +73,8 @@ public class Server : MonoBehaviour
             { NetworkMessageType.PONG,          HandleClientPong },
             { NetworkMessageType.RPC_MESSAGE,   HandleClientRPC },
             { NetworkMessageType.SPAWN_COIN,    HandleClientCoinSpawn },
-            { NetworkMessageType.UPDATE_COLUMN, HandleClientColumnUpdate },
-            { NetworkMessageType.PLAYER_TURN,   HandleClientTurn}
+            { NetworkMessageType.UPDATE_COLUMN, HandleClientColumnUpdate }
+            //{ NetworkMessageType.PLAYER_TURN,   HandleClientTurn}
         };
 
     
@@ -333,22 +335,18 @@ public class Server : MonoBehaviour
 
             if(playerCount == 1)
             {
-                //playerInstance.playerTurn = false;
-
                 PlayerTurnMessage turnMSG = new PlayerTurnMessage
                 {
-                    playerTurn = true
+                    playerTurn = true,                    
                 };
-                Debug.Log("tset");
                 serv.SendUnicast(connection, turnMSG);
             }
-            if(playerCount == 2)
+            if (playerCount == 2)
             {
-                //playerInstance.playerTurn = true;
-
                 PlayerTurnMessage turnMSG = new PlayerTurnMessage
                 {
-                    playerTurn = false
+                    playerTurn = false,
+
                 };
 
                 serv.SendUnicast(connection, turnMSG);
@@ -520,7 +518,7 @@ public class Server : MonoBehaviour
             Debug.Log("Spawn coin");
             serv.board.NewCoin(receivedCoinMSG.spawnPos, receivedCoinMSG.targetPos, receivedCoinMSG.playerID, receivedCoinMSG.column);
         }
-
+        serv.gameManager.placedCoin = true;
         
     }
 
@@ -539,15 +537,29 @@ public class Server : MonoBehaviour
         //Debug.Log("server msg");
     }
 
-    private static void HandleClientTurn(Server serv, NetworkConnection con, MessageHeader header)
-    {
-        PlayerTurnMessage turnMSG = header as PlayerTurnMessage;
-
+    //private static void HandleClientTurn(Server serv, NetworkConnection connection, MessageHeader header)
+    //{
+    //    PlayerTurnMessage turnMSG = header as PlayerTurnMessage;
+    //    Debug.Log("turnmsg");
         
-        serv.playerInstances[con].playerTurn = turnMSG.playerTurn;
-       
-        //serv.SendBroadcast(turnMSG);
-    }
+    //    if (serv.playerInstances.ContainsKey(connection))
+    //    {
+    //        if (serv.playerInstances[connection].networkId == turnMSG.playerID)
+    //        {
+    //            serv.playerInstances[connection].playerTurn = turnMSG.playerTurn;
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError("NetworkID Mismatch for Player Input");
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("Received player input from unlisted connection");
+    //    }
+
+    //    //serv.SendBroadcast(turnMSG);
+    //}
 
 }
 

@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.Networking.Transport;
+using UnityEngine;
 using System;
-
-public class PlayerTurnMessage : MessageHeader
+public class EndRoundMessage : MessageHeader
 {
 	public override NetworkMessageType Type
 	{
 		get
 		{
-			return NetworkMessageType.PLAYER_TURN;
+			return NetworkMessageType.END_ROUND;
 		}
 	}
 
 	public uint playerID;
-	public bool playerTurn;
+	public bool hasWon;
 
 	public override void SerializeObject(ref DataStreamWriter writer)
 	{
@@ -23,7 +22,7 @@ public class PlayerTurnMessage : MessageHeader
 		base.SerializeObject(ref writer);
 
 		writer.WriteUInt(playerID);
-		byte pt = Convert.ToByte(playerTurn);
+		byte pt = Convert.ToByte(hasWon);
 		writer.WriteByte(pt);
 
 
@@ -35,8 +34,8 @@ public class PlayerTurnMessage : MessageHeader
 		base.DeserializeObject(ref reader);
 
 		playerID = reader.ReadUInt();
-		bool pt = Convert.ToBoolean(reader.ReadByte());
-		playerTurn = pt;
+		bool won = Convert.ToBoolean(reader.ReadByte());
+		hasWon = won;
 
 
 	}

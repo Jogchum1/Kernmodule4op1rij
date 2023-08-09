@@ -108,20 +108,14 @@ public class NetworkedPlayer : NetworkedBehaviour
     {
 
         //Debug.Log("HIT BUTTON" + button.name);
-        if (playerTurn)
+        if (gameManager.playerTurn)
         {
             Vector3 spawnPos = button.GetComponentInParent<Column>().spawnLocation;
             Vector3 targetPos = button.GetComponentInParent<Column>().targetLocation;
 
             uint columnNumber = button.GetComponentInParent<Column>().col;
             client.CallOnServerObject("Fire", this, spawnPos, targetPos, columnNumber);
-
-            PlayerTurnMessage turnMSG = new PlayerTurnMessage
-            {
-                //playerTurn = !gameManager.playerTurn
-            };
-            //Debug.Log(!gameManager.playerTurn);
-            client.SendPackedMessage(turnMSG);
+            gameManager.placedCoin = true;
         }
 
     }

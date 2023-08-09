@@ -19,10 +19,11 @@ public class Client : MonoBehaviour
             { NetworkMessageType.PING,                      HandlePing },
             { NetworkMessageType.SPAWN_COIN,                HandleCoinSpawn},
             { NetworkMessageType.UPDATE_COLUMN,             HandleColumnUpdate},
-            { NetworkMessageType.PLAYER_TURN,               HandlePlayerTurn }
+            { NetworkMessageType.PLAYER_TURN,               HandlePlayerTurn },
+            { NetworkMessageType.END_ROUND,                 HandleEndRound}
         };
 
-   
+    
 
     public NetworkDriver m_Driver;
     public NetworkPipeline m_Pipeline;
@@ -305,10 +306,14 @@ public class Client : MonoBehaviour
     {
         PlayerTurnMessage turnMSG = header as PlayerTurnMessage;
 
-        //client.gameManager.Test();
+        client.gameManager.playerTurn = turnMSG.playerTurn;
+    }
 
-        //Debug.Log(turnMSG.playerTurn);
-        //client.SendPackedMessage(turnMSG);
+    private static void HandleEndRound(Client client, MessageHeader header)
+    {
+        EndRoundMessage RoundMSG = header as EndRoundMessage;
+
+        client.gameManager.EndOfRound(RoundMSG);
     }
 
 }
