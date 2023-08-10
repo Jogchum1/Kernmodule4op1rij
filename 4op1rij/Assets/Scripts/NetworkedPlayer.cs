@@ -115,7 +115,6 @@ public class NetworkedPlayer : NetworkedBehaviour
 
             uint columnNumber = button.GetComponentInParent<Column>().col;
             client.CallOnServerObject("Fire", this, spawnPos, targetPos, columnNumber);
-            gameManager.placedCoin = true;
         }
 
     }
@@ -135,6 +134,7 @@ public class NetworkedPlayer : NetworkedBehaviour
         };
 
         server.SendBroadcast(msg);
+        gameManager.placedCoin = true;
     }
 
     

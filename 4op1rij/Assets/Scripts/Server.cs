@@ -517,8 +517,8 @@ public class Server : MonoBehaviour
         {
             Debug.Log("Spawn coin");
             serv.board.NewCoin(receivedCoinMSG.spawnPos, receivedCoinMSG.targetPos, receivedCoinMSG.playerID, receivedCoinMSG.column);
+            serv.gameManager.placedCoin = true;
         }
-        serv.gameManager.placedCoin = true;
         
     }
 
