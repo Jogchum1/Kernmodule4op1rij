@@ -73,7 +73,8 @@ public class Server : MonoBehaviour
             { NetworkMessageType.PONG,          HandleClientPong },
             { NetworkMessageType.RPC_MESSAGE,   HandleClientRPC },
             { NetworkMessageType.SPAWN_COIN,    HandleClientCoinSpawn },
-            { NetworkMessageType.UPDATE_COLUMN, HandleClientColumnUpdate }
+            { NetworkMessageType.UPDATE_COLUMN, HandleClientColumnUpdate },
+            { NetworkMessageType.END_ROUND,     HandleClientEndRound}
             //{ NetworkMessageType.PLAYER_TURN,   HandleClientTurn}
         };
 
@@ -537,11 +538,19 @@ public class Server : MonoBehaviour
         //Debug.Log("server msg");
     }
 
+    private static void HandleClientEndRound(Server server, NetworkConnection con, MessageHeader header)
+    {
+        EndRoundMessage roundMSG = header as EndRoundMessage;
+        Debug.Log("Server end round msg");
+
+        server.gameManager.placedCoin = false;
+    }
+
     //private static void HandleClientTurn(Server serv, NetworkConnection connection, MessageHeader header)
     //{
     //    PlayerTurnMessage turnMSG = header as PlayerTurnMessage;
     //    Debug.Log("turnmsg");
-        
+
     //    if (serv.playerInstances.ContainsKey(connection))
     //    {
     //        if (serv.playerInstances[connection].networkId == turnMSG.playerID)

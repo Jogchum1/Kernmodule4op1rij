@@ -314,6 +314,7 @@ public class Client : MonoBehaviour
         EndRoundMessage RoundMSG = header as EndRoundMessage;
 
         client.gameManager.EndOfRound(RoundMSG);
+        client.SendPackedMessage(RoundMSG);
     }
 
 }

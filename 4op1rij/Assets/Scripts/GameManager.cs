@@ -46,7 +46,7 @@ public class GameManager : NetworkedBehaviour
         {
             if(placedCoin == true)
             {
-                //Check result stuff
+                //Check result stuff, if 4 op n rij enzo
 
 
 
