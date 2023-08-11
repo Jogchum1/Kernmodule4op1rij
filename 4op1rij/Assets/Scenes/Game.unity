@@ -1672,8 +1672,10 @@ MonoBehaviour:
   networkId: 0
   isLocal: 0
   isServer: 0
+  board: {fileID: 1920366318}
   playerTurn: 1
-  board: {fileID: 0}
+  gameOver: 0
+  placedCoin: 0
   columns: []
 --- !u!4 &1792271993
 Transform:

@@ -115,6 +115,7 @@ public class NetworkedPlayer : NetworkedBehaviour
 
             uint columnNumber = button.GetComponentInParent<Column>().col;
             client.CallOnServerObject("Fire", this, spawnPos, targetPos, columnNumber);
+
         }
 
     }

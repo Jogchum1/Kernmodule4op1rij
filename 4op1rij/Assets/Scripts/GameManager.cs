@@ -60,6 +60,7 @@ public class GameManager : NetworkedBehaviour
             }
 
         }
+        
     }
     
     public void EndOfRound(EndRoundMessage msg)
