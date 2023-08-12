@@ -269,6 +269,7 @@ public class Client : MonoBehaviour
         SpawnCoinMessage coinMsg = header as SpawnCoinMessage;
 
         client.board.NewCoin(coinMsg.spawnPos, coinMsg.targetPos, coinMsg.playerID, coinMsg.column);
+        Debug.Log("Coin MSG");
 
         client.SendPackedMessage(coinMsg);
     }

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Networking.Transport;
-
+using UnityEngine.UI;
 public class GameManager : NetworkedBehaviour
 {
     public bool isLocal;
     public bool isServer;
-
+    public Text winText;
 
 
     private Client client;
@@ -21,15 +21,16 @@ public class GameManager : NetworkedBehaviour
     public Column[] columns;
     public void AwakeObject()
     {
-
         if (isLocal)
         {
             client = FindObjectOfType<Client>();
+            winText.enabled = false;
         }
 
         if (isServer)
         {
             server = FindObjectOfType<Server>();
+            winText.enabled = false;
         }
         board = FindObjectOfType<BoardCanvas>();
         columns = FindObjectsOfType<Column>();
@@ -61,6 +62,15 @@ public class GameManager : NetworkedBehaviour
 
         }
         
+        
+    }
+
+    public void CheckResult(int playerNumber)
+    {
+        if (board.DidWin(playerNumber))
+        {
+            Debug.Log(playerNumber + " WON!");
+        }
     }
     
     public void EndOfRound(EndRoundMessage msg)
@@ -84,6 +94,20 @@ public class GameManager : NetworkedBehaviour
 
         placedCoin = false;
     }
-   
+
+    public void EndGame(int player)
+    {
+        winText.enabled = true;
+        if(player == 1)
+        {
+            winText.text = "Player red won!";
+        }
+        if(player == 2)
+        {
+            winText.text = "Player green won!";
+        }
+
+    }
+
 }
    

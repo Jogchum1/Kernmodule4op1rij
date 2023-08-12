@@ -541,7 +541,6 @@ public class Server : MonoBehaviour
     private static void HandleClientEndRound(Server server, NetworkConnection con, MessageHeader header)
     {
         EndRoundMessage roundMSG = header as EndRoundMessage;
-        Debug.Log("Server end round msg");
 
         server.gameManager.placedCoin = false;
     }

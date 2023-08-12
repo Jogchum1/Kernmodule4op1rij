@@ -19,6 +19,7 @@ public class BoardCanvas : MonoBehaviour
     public int lenghtOfBoard = 7;
 
     private bool player1 = true;
+    public bool serverFirst = false;
 
     int[,] boardState; //0 is empty, 1 is player 1, 2 is player 2
 
@@ -63,23 +64,140 @@ public class BoardCanvas : MonoBehaviour
 
     bool UpdateBoardState(int column)
     {
-        for (int row = 0; row < heightOfBoard; row++)
+        if (gameManager.isLocal)
         {
-            if(boardState[column, row] == 0)
+            Debug.Log(column);
+            for (int row = 0; row < heightOfBoard; row++)
             {
-                if (player1)
+                if (boardState[column, row] == 0)
                 {
-                    boardState[column, row] = 1;
+                    if (player1)
+                    {
+                        boardState[column, row] = 1;
+                        if (DidWin(1))
+                        {
+                            Debug.Log("Player 1 won client");
+                            gameManager.gameOver = true;
+                            gameManager.EndGame(1);
+                        }
+                    }
+                    else
+                    {
+                        boardState[column, row] = 2;
+                        if (DidWin(2))
+                        {
+                            Debug.Log("Player 2 won client");
+                            gameManager.gameOver = true;
+                            gameManager.EndGame(2);
+                        }
+
+                    }
+                    Debug.Log("Piece is being spawned at {" + column + ", " + row + "}");
+                    return true;
                 }
-                else
+            }
+            Debug.Log(column + "is full");
+            return false;
+        }
+        else if(gameManager.isServer)
+        {
+            for (int row = 0; row < heightOfBoard; row++)
+            {
+                if (boardState[column, row] == 0)
                 {
-                    boardState[column, row] = 2;
+                    if (serverFirst == false)
+                    {
+                        if (player1)
+                        {
+                            boardState[column, row] = 1;
+                            serverFirst = true;
+                            if (DidWin(1))
+                            {
+                                Debug.Log("Player 1 won server");
+                                gameManager.gameOver = true;
+                                gameManager.EndGame(1);
+                            }
+                        }
+                        else
+                        {
+                            boardState[column, row] = 2;
+                            serverFirst = true;
+                            if (DidWin(2))
+                            {
+                                Debug.Log("Player 2 won server");
+                                gameManager.gameOver = true;
+                                gameManager.EndGame(2);
+
+                            }
+                        }
+                        Debug.Log("Piece is being spawned at {" + column + ", " + row + "}");
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.Log("server first");
+                        serverFirst = false;
+                        return true;
+                    }
                 }
-                Debug.Log("Piece is being spawned at {" + column + ", " + row + "}");
-                return true;
+            }
+            Debug.Log(column + "is full");
+            return false;
+        }
+        else
+        {
+            Debug.Log("wtf");
+            return false;
+        }
+    }
+
+    public bool DidWin(int playerNumber)
+    {
+        //Horizontal
+        for (int x = 0; x < lenghtOfBoard - 3; x++)
+        {
+            for (int y = 0; y < heightOfBoard; y++)
+            {
+                if (boardState[x, y] == playerNumber && boardState[x + 1, y] == playerNumber && boardState[x + 2, y] == playerNumber && boardState[x + 3, y] == playerNumber)
+                {
+                    return true;
+                }
             }
         }
-        Debug.Log(column + "is full");
+        //vertical
+        for (int x = 0; x < lenghtOfBoard; x++)
+        {
+            for (int y = 0; y < heightOfBoard - 3; y++)
+            {
+                if (boardState[x, y] == playerNumber && boardState[x, y + 1] == playerNumber && boardState[x, y + 2] == playerNumber && boardState[x, y + 3] == playerNumber)
+                {
+                    return true;
+                }
+            }
+        }
+        //y=x line
+        for (int x = 0; x < lenghtOfBoard - 3; x++)
+        {
+            for (int y = 0; y < heightOfBoard - 3; y++)
+            {
+                if (boardState[x, y] == playerNumber && boardState[x + 1, y + 1] == playerNumber && boardState[x + 2, y + 2] == playerNumber && boardState[x + 3, y + 3] == playerNumber)
+                {
+                    return true;
+                }
+            }
+        }
+        //y=-x line
+        for (int x = 0; x < lenghtOfBoard - 3; x++)
+        {
+            for (int y = 0; y < heightOfBoard - 3; y++)
+            {
+                if (boardState[x, y + 3] == playerNumber && boardState[x + 1, y + 2] == playerNumber && boardState[x + 2, y + 1] == playerNumber && boardState[x + 3, y] == playerNumber)
+                {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
