@@ -19,6 +19,7 @@ public class GameManager : NetworkedBehaviour
     public bool placedCoin = false;
 
     public Column[] columns;
+    public HandleScore scoreHandler;
     public void AwakeObject()
     {
         if (isLocal)
@@ -98,7 +99,8 @@ public class GameManager : NetworkedBehaviour
     public void EndGame(int player)
     {
         winText.enabled = true;
-        if(player == 1)
+        scoreHandler.StartScoreInsert();
+        if (player == 1)
         {
             winText.text = "Player red won!";
         }
