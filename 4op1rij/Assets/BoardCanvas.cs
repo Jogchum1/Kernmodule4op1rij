@@ -43,11 +43,13 @@ public class BoardCanvas : MonoBehaviour
                 {
                     newCoin.GetComponent<Image>().color = Color.red;
                     player1 = false;
+                    if (DidWin(1));
                 }
                 else
                 {
                     newCoin.GetComponent<Image>().color = Color.green;
                     player1 = true;
+                    if (DidWin(2));
                 }
 
                 foreach (Column col in gameManager.columns)

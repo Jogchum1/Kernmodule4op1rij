@@ -40,7 +40,12 @@ public class UserLogin : MonoBehaviour
 			else
 			{
 				Debug.Log(www.downloadHandler.text);
-				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+				if(www.downloadHandler.text == "")
+                {
+
+					SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
 				// We're probably expexting something in return:
 				//JObject json = JObject.Parse(www.downloadHandler.text);
 				//int sessionID = (int)json["sessionid"];

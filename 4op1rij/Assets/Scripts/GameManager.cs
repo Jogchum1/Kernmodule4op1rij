@@ -48,7 +48,6 @@ public class GameManager : NetworkedBehaviour
         {
             if(placedCoin == true)
             {
-                //Check result stuff, if 4 op n rij enzo
 
 
 
@@ -99,14 +98,35 @@ public class GameManager : NetworkedBehaviour
     public void EndGame(int player)
     {
         winText.enabled = true;
-        scoreHandler.StartScoreInsert();
+            
+
         if (player == 1)
         {
             winText.text = "Player red won!";
+            if(this.playerTurn == false)
+            {
+                if(isLocal)
+                    this.scoreHandler.StartScoreInsert(1);
+            }
+            else
+            {
+                if (isLocal)
+                    this.scoreHandler.StartScoreInsert(0);
+            }
         }
         if(player == 2)
         {
             winText.text = "Player green won!";
+            if (this.playerTurn == false)
+            {
+                if (isLocal)
+                    this.scoreHandler.StartScoreInsert(1);
+            }
+            else
+            {
+                if (isLocal)
+                    this.scoreHandler.StartScoreInsert(0);
+            }
         }
 
     }

@@ -7,17 +7,18 @@ using UnityEngine.UI;
 
 public class HandleScore : MonoBehaviour
 {
+	public int score;
 
-	public void StartScoreInsert()
+	public void StartScoreInsert(int scoreAmount)
 	{
+		score = scoreAmount;
 		StartCoroutine(ScoreInsert());
 	}
 	IEnumerator ScoreInsert()
 	{
-		int id = 1;
-		string password = "Steen";
-
-		using (UnityWebRequest www = UnityWebRequest.Get($"https://studenthome.hku.nl/~jogchum.hofma/NetworkingJogchum/Insert_Score.php"))
+		int tmpScore = score;
+		Debug.Log(tmpScore + " is temp score");
+		using (UnityWebRequest www = UnityWebRequest.Get($"https://studenthome.hku.nl/~jogchum.hofma/NetworkingJogchum/Insert_Score.php?score={tmpScore}"))
 		{
 			yield return www.SendWebRequest();
 
