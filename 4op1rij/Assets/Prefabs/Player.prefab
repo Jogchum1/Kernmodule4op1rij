@@ -50,7 +50,8 @@ MonoBehaviour:
   networkId: 0
   isLocal: 0
   isServer: 0
-  coin: {fileID: 8695713124243721448, guid: 032bf251ec662ac429ee49af2d31b6be, type: 3}
+  gameManager: {fileID: 0}
+  playerTurn: 0
   camera: {fileID: 0}
 --- !u!54 &7595370612375930686
 Rigidbody:
@@ -130,7 +131,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6557828242930580312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

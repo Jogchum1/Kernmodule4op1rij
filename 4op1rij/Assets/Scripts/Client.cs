@@ -194,7 +194,7 @@ public class Client : MonoBehaviour
             player.isServer = false;
             client.gameManager.isLocal = true;
             client.gameManager.isServer = false;
-            client.gameManager.AwakeObject();
+            client.gameManager.SetGameManager();
 
             ButtonSetup[] buttons = FindObjectsOfType<ButtonSetup>();
             foreach (ButtonSetup button in buttons)

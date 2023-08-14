@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BoardCanvas" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAAAAAAACAAIAJAAIACIAACAAQAACACoAAAAACAAAA=</HashCode>
+      <FileName>Assets\BoardCanvas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ButtonSetup" Collapsed="true">
+    <Position X="13.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAEAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ButtonSetup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Register" Collapsed="true">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAQAAAAAAAAAEAAAAACAAAQACA=</HashCode>
+      <FileName>Assets\Register.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServerLogin" Collapsed="true">
+    <Position X="14" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ServerLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserLogin" Collapsed="true">
+    <Position X="13.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAEAAAEACAAAAAQE=</HashCode>
+      <FileName>Assets\UserLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Board" Collapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Board.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkedBehaviour" Collapsed="true">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\NetworkedBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ChatMessage" Collapsed="true">
+    <Position X="27" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAEAAAAAAAAAAAAACAAAAAAAAAQAAAAAAACA=</HashCode>
+      <FileName>Assets\Scripts\Messages\ChatMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatQuitMessage" Collapsed="true">
+    <Position X="28.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\ChatQuitMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DestroyMessage" Collapsed="true">
+    <Position X="30.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\DestroyMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EndRoundMessage" Collapsed="true">
+    <Position X="32.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAkAAAAAAAAAAAAACAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\EndRoundMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HandshakeMessage" Collapsed="true">
+    <Position X="27" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAACAAAEAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\HandshakeMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HandshakeResponseMessage" Collapsed="true">
+    <Position X="28.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAQAgAAAAACA=</HashCode>
+      <FileName>Assets\Scripts\Messages\HandshakeResponseMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputUpdateMessage" Collapsed="true">
+    <Position X="30.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAACAAAAABAAAQAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\InputUpdateMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PingMessage" Collapsed="true">
+    <Position X="32.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\PingMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerTurnMessage" Collapsed="true">
+    <Position X="27" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAEAAAAAAAAAAAAAiAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\PlayerTurnMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PongMessage" Collapsed="true">
+    <Position X="28.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\PongMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RPCMessage" Collapsed="true">
+    <Position X="30.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAIgCAIAACAAAAAAAAAQAAAAAABAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\RPCMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpawnCoinMessage" Collapsed="true">
+    <Position X="32.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACgAEAAAAAAAAQAAAACQAAAAAAAAQAQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\SpawnCoinMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpawnMessage" Collapsed="true">
+    <Position X="27" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAEAAAAAAAACAIAACAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\SpawnMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UpdateColumnMessage" Collapsed="true">
+    <Position X="28.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAQAAAAAABAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\UpdateColumnMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UpdatePositionMessage" Collapsed="true">
+    <Position X="30.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAACAIAACAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Messages\UpdatePositionMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MessageHeader" Collapsed="true">
+    <Position X="29.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAkAAAABAAAAACAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\MessageHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

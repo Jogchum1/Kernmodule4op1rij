@@ -20,18 +20,16 @@ public class GameManager : NetworkedBehaviour
 
     public Column[] columns;
     public HandleScore scoreHandler;
-    public void AwakeObject()
+    public void SetGameManager()
     {
         if (isLocal)
         {
             client = FindObjectOfType<Client>();
-            winText.enabled = false;
         }
 
         if (isServer)
         {
             server = FindObjectOfType<Server>();
-            winText.enabled = false;
         }
         board = FindObjectOfType<BoardCanvas>();
         columns = FindObjectsOfType<Column>();
@@ -49,15 +47,14 @@ public class GameManager : NetworkedBehaviour
             if(placedCoin == true)
             {
 
-
-
                 EndRoundMessage roundMSG = new EndRoundMessage
                 {
                     hasWon = this.gameOver,
-
                 };
 
+                Debug.Log("server send end round message");
                 server.SendBroadcast(roundMSG);
+                this.placedCoin = false;
             }
 
         }
@@ -97,8 +94,11 @@ public class GameManager : NetworkedBehaviour
 
     public void EndGame(int player)
     {
-        winText.enabled = true;
-            
+        this.winText.gameObject.SetActive(true);
+        foreach (Column col in columns)
+        {
+            col.gameObject.SetActive(false);
+        }
 
         if (player == 1)
         {

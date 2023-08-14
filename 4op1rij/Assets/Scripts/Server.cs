@@ -328,7 +328,7 @@ public class Server : MonoBehaviour
             GameManager manager = FindObjectOfType<GameManager>();
             manager.isServer = true;
             manager.isLocal = false;
-            manager.AwakeObject();
+            manager.SetGameManager();
             networkId = playerInstance.networkId;
             playerCount++;
             Debug.Log(playerCount);
