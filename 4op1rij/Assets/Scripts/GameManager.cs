@@ -106,12 +106,12 @@ public class GameManager : NetworkedBehaviour
             if(this.playerTurn == false)
             {
                 if(isLocal)
-                    this.scoreHandler.StartScoreInsert(1);
+                    this.scoreHandler.StartScoreInsert(0);
             }
             else
             {
                 if (isLocal)
-                    this.scoreHandler.StartScoreInsert(0);
+                    this.scoreHandler.StartScoreInsert(1);
             }
         }
         if(player == 2)
@@ -120,12 +120,12 @@ public class GameManager : NetworkedBehaviour
             if (this.playerTurn == false)
             {
                 if (isLocal)
-                    this.scoreHandler.StartScoreInsert(1);
+                    this.scoreHandler.StartScoreInsert(0);
             }
             else
             {
                 if (isLocal)
-                    this.scoreHandler.StartScoreInsert(0);
+                    this.scoreHandler.StartScoreInsert(1);
             }
         }
 

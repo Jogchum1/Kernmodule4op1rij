@@ -57,7 +57,7 @@ public class BoardCanvas : MonoBehaviour
                     if(col.col == column)
                     {
                         //col.targetLocation = targetPos;
-                        col.targetLocation = new Vector3(targetPos.x, targetPos.y + 38f, targetPos.z);
+                        col.targetLocation = new Vector3(targetPos.x, targetPos.y + 39f, targetPos.z);
                     }
                 }
             }

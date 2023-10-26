@@ -18,7 +18,9 @@ public class HandleScore : MonoBehaviour
 	{
 		int tmpScore = score;
 		Debug.Log(tmpScore + " is temp score");
-		using (UnityWebRequest www = UnityWebRequest.Get($"https://studenthome.hku.nl/~jogchum.hofma/NetworkingJogchum/Insert_Score.php?score={tmpScore}"))
+		int userID = PlayerPrefs.GetInt("userID");
+		Debug.Log(userID + " is this my userID?");
+		using (UnityWebRequest www = UnityWebRequest.Get($"https://studenthome.hku.nl/~jogchum.hofma/NetworkingJogchum/Insert_Score.php?score={tmpScore}&user_id={userID}"))
 		{
 			yield return www.SendWebRequest();
 

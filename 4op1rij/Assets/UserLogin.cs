@@ -11,9 +11,9 @@ public class UserLogin : MonoBehaviour
 	public InputField passwordInput;
 
 	public GameObject registerObj;
-
-    // Start is called before the first frame update
-    public void UserLoginButton()
+	public int userID;
+	// Start is called before the first frame update
+	public void UserLoginButton()
     {
 		StartCoroutine(LoginUser());
     }
@@ -40,10 +40,24 @@ public class UserLogin : MonoBehaviour
 			else
 			{
 				Debug.Log(www.downloadHandler.text);
+				string tmp = (www.downloadHandler.text);
+				
+				string[] subs = tmp.Split(' ');
 
-				if(www.downloadHandler.text == "")
+				foreach (var sub in subs)
+				{
+					bool result;
+					result = int.TryParse(sub, out userID);
+                    if (result)
+                    {
+						Debug.Log(userID);
+						PlayerPrefs.SetInt("userID", userID);
+                    }
+				}
+
+				if (www.downloadHandler.text.Contains("User logged in!"))
                 {
-
+					Debug.Log(www.result);
 					SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
 				// We're probably expexting something in return:

@@ -2559,6 +2559,7 @@ MonoBehaviour:
   usernameInput: {fileID: 366748627}
   passwordInput: {fileID: 560621490}
   registerObj: {fileID: 486503145}
+  userID: 0
 --- !u!1 &1903187340
 GameObject:
   m_ObjectHideFlags: 0
