@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 13 aug 2023 om 23:59
+-- Gegenereerd op: 28 okt 2023 om 11:43
 -- Serverversie: 10.6.12-MariaDB
 -- PHP-versie: 7.4.6
 
@@ -129,7 +129,87 @@ INSERT INTO `Score` (`id`, `score`, `game_id`, `user_id`, `server_id`, `datetime
 (61, 0, 3, 54, 1, '2023-08-13 23:36:01'),
 (62, 0, 3, 63, 1, '2023-08-13 23:54:57'),
 (63, 1, 3, 64, 1, '2023-08-13 23:54:57'),
-(64, 0, 3, 55, 1, '2023-08-13 23:54:57');
+(64, 0, 3, 55, 1, '2023-08-13 23:54:57'),
+(65, 0, 3, 64, 1, '2023-08-14 12:32:41'),
+(66, 1, 3, 63, 1, '2023-08-14 12:32:41'),
+(67, 0, 3, 63, 1, '2023-08-14 12:36:00'),
+(68, 1, 3, 64, 1, '2023-08-14 12:36:00'),
+(69, 0, 3, 63, 1, '2023-08-14 12:36:13'),
+(70, 1, 3, 64, 1, '2023-08-14 12:36:13'),
+(71, 0, 3, 64, 1, '2023-08-14 12:46:33'),
+(72, 1, 3, 63, 1, '2023-08-14 12:46:33'),
+(73, 0, 3, 64, 1, '2023-08-14 12:46:38'),
+(74, 1, 3, 63, 1, '2023-08-14 12:46:38'),
+(75, 0, 3, 63, 1, '2023-08-14 12:54:04'),
+(76, 1, 3, 64, 1, '2023-08-14 12:54:04'),
+(77, 0, 3, 63, 1, '2023-08-14 12:54:15'),
+(78, 1, 3, 64, 1, '2023-08-14 12:54:15'),
+(79, 1, 3, 64, 1, '2023-08-14 12:54:16'),
+(80, 0, 3, 63, 1, '2023-08-14 12:54:16'),
+(81, 0, 3, 63, 1, '2023-08-14 12:54:17'),
+(82, 1, 3, 64, 1, '2023-08-14 12:54:17'),
+(83, 0, 3, 63, 1, '2023-08-14 12:54:19'),
+(84, 1, 3, 64, 1, '2023-08-14 12:54:19'),
+(85, 0, 3, 63, 1, '2023-08-14 12:54:20'),
+(86, 1, 3, 64, 1, '2023-08-14 12:54:20'),
+(87, 0, 3, 63, 1, '2023-08-14 12:54:21'),
+(88, 1, 3, 64, 1, '2023-08-14 12:54:21'),
+(89, 0, 3, 63, 1, '2023-08-14 12:54:22'),
+(90, 1, 3, 64, 1, '2023-08-14 12:54:22'),
+(91, 1, 3, 64, 1, '2023-08-14 12:54:22'),
+(92, 0, 3, 63, 1, '2023-08-14 12:54:22'),
+(93, 0, 3, 63, 1, '2023-08-14 12:54:23'),
+(94, 1, 3, 64, 1, '2023-08-14 12:54:23'),
+(95, 0, 3, 63, 1, '2023-08-14 12:54:24'),
+(96, 1, 3, 64, 1, '2023-08-14 12:54:24'),
+(97, 0, 3, 63, 1, '2023-08-14 12:54:24'),
+(98, 1, 3, 64, 1, '2023-08-14 12:54:24'),
+(99, 1, 3, 64, 1, '2023-08-14 13:05:24'),
+(100, 0, 3, 63, 1, '2023-08-14 13:05:24'),
+(101, 1, 3, 64, 1, '2023-08-14 13:11:34'),
+(102, 0, 3, 63, 1, '2023-08-14 13:11:34'),
+(103, 1, 3, 65, 1, '2023-08-14 16:46:02'),
+(104, 0, 3, 63, 1, '2023-08-14 16:46:02'),
+(105, 1, 3, 68, 1, '2023-10-23 14:33:10'),
+(106, 0, 3, 67, 1, '2023-10-23 14:33:10'),
+(107, 1, 3, 70, 7, '2023-10-25 15:40:54'),
+(108, 0, 3, 75, 7, '2023-10-25 16:31:09'),
+(109, 1, 3, 76, 7, '2023-10-25 16:31:09'),
+(110, 1, 3, 70, 7, '2023-10-26 12:14:25'),
+(111, 1, 3, 70, 7, '2023-10-26 12:14:31'),
+(112, 1, 3, 70, 7, '2023-10-26 12:15:08'),
+(113, 1, 3, 70, 7, '2023-10-26 12:16:04'),
+(114, 1, 3, 1, 7, '2023-10-26 12:16:48'),
+(115, 0, 3, 0, 7, '2023-10-26 12:20:47'),
+(116, 1, 3, 0, 7, '2023-10-26 12:20:47'),
+(117, 0, 3, 76, 7, '2023-10-26 12:26:03'),
+(118, 1, 3, 75, 7, '2023-10-26 12:26:03'),
+(119, 0, 3, 74, 7, '2023-10-26 12:28:12'),
+(120, 1, 3, 75, 7, '2023-10-26 12:28:12'),
+(121, 0, 3, 75, 7, '2023-10-26 12:33:36'),
+(122, 1, 3, 74, 7, '2023-10-26 12:33:36'),
+(123, 0, 3, 75, 7, '2023-10-26 12:35:52'),
+(124, 1, 3, 76, 7, '2023-10-26 12:35:52'),
+(125, 0, 3, 76, 7, '2023-10-26 12:37:24'),
+(126, 1, 3, 75, 7, '2023-10-26 12:37:24'),
+(127, 1, 3, 76, 7, '2023-10-26 12:40:46'),
+(128, 0, 3, 75, 7, '2023-10-26 12:40:46'),
+(129, 1, 3, 1, 7, '2023-10-26 12:42:15'),
+(130, 1, 3, 1, 7, '2023-10-27 14:13:39'),
+(131, 1, 3, 1, 7, '2023-10-27 14:14:21'),
+(132, 1, 3, 1, 7, '2023-10-27 14:14:51'),
+(133, 1, 3, 1, 7, '2023-10-27 14:15:40'),
+(134, 1, 3, 1, 7, '2023-10-27 14:16:00'),
+(135, 1, 3, 1, 7, '2023-10-27 14:16:12'),
+(136, 1, 3, 75, 7, '2023-10-27 14:33:01'),
+(137, 1, 3, 75, 7, '2023-10-27 14:35:21'),
+(138, 1, 3, 75, 7, '2023-10-27 14:36:37'),
+(139, 1, 3, 1, 7, '2023-10-27 14:41:05'),
+(140, 1, 3, 1, 7, '2023-10-27 15:05:01'),
+(141, 1, 3, 1, 7, '2023-10-27 15:40:03'),
+(142, 0, 3, 1, 7, '2023-10-27 15:40:08'),
+(143, 1, 3, 78, 7, '2023-10-28 12:58:27'),
+(144, 0, 3, 75, 7, '2023-10-28 12:58:27');
 
 -- --------------------------------------------------------
 
@@ -169,37 +249,15 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`id`, `name`, `email`, `password`, `datetime`) VALUES
-(1, 'Jogchum', 'jogchum@hotmail.com', 'Af827asF', '2022-05-09 10:25:49'),
-(2, 'Justin', 'justin@hotmail.com', 'Jsy16AS7k', '2022-05-09 10:25:49'),
-(3, 'Joey', 'joey@hotmail.com', 'Us61SF72', '2022-05-09 10:25:49'),
-(25, 'testmetspatie', 'test@gmail.com', 'testesttest', '2022-06-13 10:02:54'),
-(26, 'testmetspatie', 'test@gmail.com', 'testesttest', '2022-06-13 10:04:44'),
-(39, 'hashTest', 'hash@gmail.com', '$2y$10$aHI6a.DYItgu2s.me.WrQO6lFoBJR2/MAZlqOloJhw69s1aNyJczW', '2022-06-13 10:08:13'),
-(40, 'hashTest', 'hash@gmail.com', '$2y$10$8.40N/jWzBG8z18V9kPjqOO.sYTuoEKa6YsiPOu60YpNggFceuj4C', '2022-06-13 10:17:03'),
-(41, 'hashTest', 'hash@gmail.com', '$2y$10$d6veAzYjxuGZO5pCop6tBu1plp/JDvy/rhLiZLiuXTBLNnpOTV0cK', '2022-06-13 10:31:11'),
-(42, 'hashTest', 'hash@gmail.com', '$2y$10$QcCZdg0AI8oiRj14nzVWuu6H8evqVJNZ3AWEpFP72heqev.h.kyeW', '2023-08-12 21:05:45'),
-(43, 'hashTest', 'hash@gmail.com', '$2y$10$nS5/ihHCgHA44fYZT0J.l.n5A4ovTfSD8aMW6LzKOBxlmB1438jC2', '2023-08-12 21:10:32'),
-(44, 'hashTest', 'hash@gmail.com', '$2y$10$VurfXpJbb221dFity0PPn.njEVT.ilZ9Mmyfmz7wHmYsfcRBirsIu', '2023-08-12 21:11:30'),
-(45, 'hashTest', 'hash@gmail.com', '$2y$10$a4zSlJmNVZi0CXER8yn25ehiNI02Ssirp.ZtCG..FW72UXJCCEBZ.', '2023-08-12 21:11:53'),
-(46, 'hashTest', 'hash@gmail.com', '$2y$10$5nDhc4NvtzU8DeeeA/wC/eC8iTBWvDub9BsPH/.kZEaljmIIT7yiG', '2023-08-12 21:12:34'),
-(47, 'hashTest', 'hash@gmail.com', '$2y$10$no1Xrnq6HGQd5aqjnXAg9ul4trygxl1a6UIn6h3UdlcbHWFWOHIRW', '2023-08-12 21:13:03'),
-(48, 'hashTest', 'hash@gmail.com', '$2y$10$uzbZjGteUHS.4khL2P1tpuZOMQsqpkLyRquEXx61tFattG.pwjZB6', '2023-08-12 21:14:00'),
-(49, 'hashTest', 'hash@gmail.com', '$2y$10$4ylpJN2CVv4BC/lGFmnJWO3WRQ0NuHJxlEHmP1Jy6jlU7M/33X3aC', '2023-08-12 21:15:42'),
-(50, 'hashTest2', 'hash@gmail.com', '$2y$10$CJlfTxxI2O3ITRWKEJ2qWuRSovh9q6BRMUqc9CLpN7jLtt9XecfRm', '2023-08-12 21:17:41'),
-(51, 'test1', 'test2@gmail.com', '$2y$10$wTAPfRwEbNR/ytyH7zAaAu2Uit6WJeygHZ4zMS5KOdx.XmqoEo1cu', '2023-08-13 15:36:43'),
-(52, 'FirstUnityTest', 'lalala@gmail.com', '$2y$10$Tad7wcTH4pjOnQn.DjYLbO6RphdXHY7H2SbLIBZay4QzqhQuODFQC', '2023-08-13 15:43:12'),
-(53, 'SecondUnityTest', 'unitytest@hotmail.nl', '$2y$10$99swICGGR69SzNiRYivizud0rxZ5zEtD4koL5qK3k3aV2i0EUJX7W', '2023-08-13 16:00:17'),
-(54, 'ThirdUnityTest', 'testtest@hotmail.com', '$2y$10$d6uLns8c2QmuUVcmVQaOgOFs0mARyMxWlYTI1oRkVI/8LXf/oIZHq', '2023-08-13 17:37:54'),
-(55, 'UnityTry4', 'test@hotmail.be', '$2y$10$RK.946uBTdFgjVT5LmbUXOI8qFxDy.9HsC43JUlSG4qQ66ZEnDGq.', '2023-08-13 17:48:43'),
-(56, 'test1', 'test2@gmail.com', '$2y$10$4gUZscjRWRVsa9IanOrVPOgjNn5KCNhLcZ3olkLn4kh1CEBxJJCXC', '2023-08-13 21:19:45'),
-(57, 'test1', 'test2@gmail.com', '$2y$10$0PYSabTrpXHGC1zC0W5aS.eRt5L77mvuMwDX0Ty2mC5uAndV0Zhlm', '2023-08-13 21:20:45'),
-(58, 'test1', 'test2@gmail.com', '$2y$10$r2riP3X8NKnE3t3YNK3pTOxs/SxZUcCZlUArN/00VeMhhwKi9mIA6', '2023-08-13 21:21:03'),
-(59, 'test1', 'test2@gmail.com', '$2y$10$TRec7ca4n7Z1Kt7YlDIRaupFDZJDDdkPZRORKOxFO16yWR68O4xGK', '2023-08-13 21:21:52'),
-(60, 'test1', 'test2@gmail.com', '$2y$10$49KVuHm9YUfh4kUgz0sbSeNLeYF9Fh9zygdIHRmuOtOXMKXKHUHnS', '2023-08-13 21:22:22'),
-(61, '123', 'lalala@gmail.com', '$2y$10$EklyW4QLzUPOqF9po2SWz.8n5MbzukLD72P.ig18pvya1reUKjtWS', '2023-08-13 21:22:46'),
-(62, 'test1', 'test2@gmail.com', '$2y$10$tPhRAJhEVTfQmqCdxxPP4.hbDM0x0wzgkkIYGoW4jyagdFwTvJxCK', '2023-08-13 21:25:16'),
-(63, 'UnityTry5', 'test@hotmail.com', '$2y$10$.SJA3fkJRIb24KyON04xUuXu0oAuIT2OThawLpabHRmKOr6DUYusu', '2023-08-13 21:54:27'),
-(64, 'UnityTest6', 'test@gmail.com', '$2y$10$ByVySCfaUEjkXzGsY0/.p.gz62IXZ7Q0f63rYlpiRt8e382wEEQCG', '2023-08-13 22:17:32');
+(70, 'joey1', 'joey@hotmail.nl', 'joey1', '2023-10-24 13:48:20'),
+(71, 'joey2', 'joey@gmail.com', 'joey2', '2023-10-24 13:51:57'),
+(72, 'joey3', 'joey3@gmail.com', 'joey3', '2023-10-25 14:18:47'),
+(73, 'jogchum1', 'jogchum@hotmail.com', 'jogchum1', '2023-10-25 14:41:48'),
+(74, 'Unity1', 'test@gmail.com', 'Unity1', '2023-10-25 15:15:15'),
+(75, 'Unity2', 'test@hotmail.com', 'Unity2', '2023-10-25 15:16:51'),
+(76, 'Unity3', 'test@gmail.com', 'Unity3', '2023-10-25 15:17:29'),
+(77, 'Unity4', 'Unity4@gmail.nl', 'Unity4', '2023-10-27 14:32:12'),
+(78, '123', 'supertest@gmail.com', '123', '2023-10-28 12:57:36');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -249,7 +307,7 @@ ALTER TABLE `Games`
 -- AUTO_INCREMENT voor een tabel `Score`
 --
 ALTER TABLE `Score`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT voor een tabel `Servers`
@@ -261,7 +319,7 @@ ALTER TABLE `Servers`
 -- AUTO_INCREMENT voor een tabel `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
